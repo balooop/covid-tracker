@@ -20,7 +20,7 @@
 	<script type="text/javascript">
 		// Configure AWS SDK for JavaScript & set region and credentials
 		// Initialize the Amazon Cognito credentials provider
-		AWS.config.region = 'us-west-2'; // Region
+		AWS.config.region = 'us-east-2'; // Region
 		AWS.config.credentials = new AWS.CognitoIdentityCredentials({
 			IdentityPoolId: 'us-east-2:fad8bf8b-3e89-436a-8120-f35b1c8c3d7e',
 		});
@@ -37,7 +37,7 @@
 			}
 			lambda.invoke(params, function(err,data){
 				if (err) 	console.log(err,err.stack);
-				else		console.lg(data);
+				else		console.log(data);
 			});
 			finishSubmission();
 		};	
