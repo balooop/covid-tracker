@@ -36,8 +36,8 @@
 				InvocationType: 'DryRun'
 			};
 			lambda.invoke(params, function(err,data){
-				if (err) 	alert(err,err.stack);
-				else		alert(data);
+				if (err) 	alert("err,err.stack");
+				else		alert("success!");
 			});
 			finishSubmission();
 		};
