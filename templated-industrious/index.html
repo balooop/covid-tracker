@@ -30,14 +30,14 @@
 		};
 
 		function processForm() {
-			var lambda = new AWS.Lambda();
+			var lambda = new AWS.Lambda({region: 'us-east-2', apiVersion: '2015-03-31'});
 			var params = {
-				FunctionName: "test",
-				Payload: ""
+				FunctionName: 'arn:aws:lambda:us-east-2:834423887668:function:test',
+				InvocationType: 'DryRun'
 			};
 			lambda.invoke(params, function(err,data){
-				if (err) 	console.log(err,err.stack);
-				else		console.log(data);
+				if (err) 	alert(err,err.stack);
+				else		alert(data);
 			});
 			finishSubmission();
 		};	
@@ -238,10 +238,8 @@
 				</div> -->
 				</form>
 			</div>
-			<div class="row">
-				<input type="submit" value="Submit" onclick="processForm();">
-			</div>
-
+				<!-- <input type="submit" value="Submit" onclick="processForm();" style="top: 50%; bottom: 50%;"> -->
+				<a class="button" onclick="processForm();" style="margin: auto;">Submit</a>
 		</div>
 	</section>
 
