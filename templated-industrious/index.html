@@ -32,8 +32,9 @@
 		function processForm() {
 			var lambda = new AWS.Lambda({region: 'us-east-2', apiVersion: '2015-03-31'});
 			var params = {
-				FunctionName: 'arn:aws:lambda:us-east-2:834423887668:function:test',
-				InvocationType: 'RequestResponse'
+				FunctionName: 'arn:aws:lambda:us-east-2:834423887668:function:submit',
+				InvocationType: 'RequestResponse',
+				Payload: JSON.stringify({address: document.getElementById("searchTextField0").value})
 			};
 			lambda.invoke(params, function(err,data){
 				if (err) 	alert("err,err.stack");
