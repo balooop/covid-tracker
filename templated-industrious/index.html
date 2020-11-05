@@ -34,7 +34,7 @@
 			var params = {
 				FunctionName: 'arn:aws:lambda:us-east-2:834423887668:function:submit',
 				InvocationType: 'RequestResponse',
-				Payload: JSON.stringify({address: document.getElementById("searchTextField0").value})
+				Payload: JSON.stringify({"address": document.getElementById("searchTextField0").value})
 			};
 			lambda.invoke(params, function(err,data){
 				if (err) 	alert("err,err.stack");
