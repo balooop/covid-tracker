@@ -98,11 +98,12 @@
 				for (var i = 2; i < 3; i++) {
 					var input = document.getElementById('searchTextField' + i);
 					var autocomplete = new google.maps.places.Autocomplete(input);
+					var place = autocomplete.setFields(["formatted_address"]);
 					google.maps.event.addListener(autocomplete, 'place_changed', function () {
-						var place = autocomplete.getPlace();
-						document.getElementById('city2').value = place.name;
-						document.getElementById('cityLat').value = place.geometry.location.lat();
-						document.getElementById('cityLng').value = place.geometry.location.lng();
+						var place = this.getPlace().formatted_address;
+						console.log(place);
+						console.log(this);
+						document.getElementById('searchTextField' + 2).value = place;
 					});
 				}
 			}
