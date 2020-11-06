@@ -17,6 +17,8 @@ CREATE TRIGGER InsertAddressfromCases
             UPDATE Addresses
             SET num_cases = num_cases + 1
             WHERE _address = new.address_visited;
+        END IF;
+
         
         #### CREATE/UPDATE BLOCK TABLE ####
         SET @block =  ( SELECT block_id
