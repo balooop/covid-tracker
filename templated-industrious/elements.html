@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<script src="https://maps.googleapis.com/maps/api/jsvv=3.exp&sensor=false&libraries=places"></script>
 	<script type="text/javascript"
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA653OyjftmU3g_j2Sn8VidNicpeOBVibc&libraries=places"></script>
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA653OyjftmU3g_j2Sn8VidNicpeOBVibc&libraries=places"></script>
 </head>
 
 <body class="is-preload">
@@ -38,7 +38,7 @@
 		<!-- Main -->
 		<section id="main" class="wrapper">
 			<div class="inner">
-				<div class="content">
+				<div class="content" id="searchbyaddr" style="display: block;">
 
 					<!-- Elements -->
 					<div class="row">
@@ -55,10 +55,31 @@
 										autocomplete="on" runat="server" />
 								</div>
 							</div>
-							<a class="button" style="margin: auto;">Search</a>
+							<a class="button" style="margin: auto;" onclick="displayCasesforAddress();">Search</a>
 						</div>
 					</div>
 				</div>
+				<section class="center" id="casescard" style="display: none;">
+					<div class="container-fluid">
+						<div class="container">
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="card text-center">
+										<div class="title">
+											<i class="fa fa-rocket" aria-hidden="true"></i>
+											<h2>Address</h2>
+										</div>
+										<div class="price">
+											<h4><sup>Cases</sup><br>100</h4>
+										</div>
+										<a class="button" style="margin: auto;" onclick="searchAgain();">Search
+											again</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section1>
 			</div>
 		</section>
 		<script>
@@ -82,39 +103,44 @@
 			<div class="inner">
 				<div class="content">
 					<section>
-						<h3>Quote from one of the creators</h3>
-						<blockquote>My name is Pavan Baloo and I'm the captain of your Metea Valley Speach team. Please
-							rise for the pledge. <br>-Pavan Baloo.</blockquote>
-
+						<h3>About this project</h3>
+						<p>This project was made for the class CS411 at the University of Illinois at Urbana-Champaign
+							with
+							the intention of helping thousands of students make safer decisions in regards to COVID-19.
+							We
+							believe that knowledge is power, and we hope to be able to bring that power to students,
+							staff,
+							and local residents to be able to make smarter, more informed decisions.</p>
 					</section>
-					<section>
-						<h4>Sem turpis amet semper</h4>
-						<ul class="alt">
-							<li><a href="#">Dolor pulvinar sed etiam.</a></li>
-							<li><a href="#">Etiam vel lorem sed amet.</a></li>
-							<li><a href="#">Felis enim feugiat viverra.</a></li>
-							<li><a href="#">Dolor pulvinar magna etiam.</a></li>
-						</ul>
-					</section>
-					<section>
-						<h4>Magna sed ipsum</h4>
-						<ul class="plain">
-							<li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
-							<li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
-							<li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
-							<li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
-						</ul>
-					</section>
+					<!-- <section>
+					<h4>Sem turpis amet semper</h4>
+					<ul class="alt">
+						<li><a href="#">Dolor pulvinar sed etiam.</a></li>
+						<li><a href="#">Etiam vel lorem sed amet.</a></li>
+						<li><a href="#">Felis enim feugiat viverra.</a></li>
+						<li><a href="#">Dolor pulvinar magna etiam.</a></li>
+					</ul>
+				</section>
+				<section>
+					<h4>Magna sed ipsum</h4>
+					<ul class="plain">
+						<li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
+						<li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
+						<li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
+						<li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+					</ul>
+				</section> -->
 				</div>
 				<div class="copyright">
-					&copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a
-						href="https://coverr.co">Coverr</a>.
+					&copy; GRAPE.
 				</div>
 			</div>
 		</footer>
 
 		<!-- Scripts -->
+		<!-- Scripts -->
 		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/covid.js"></script>
 		<script src="assets/js/browser.min.js"></script>
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
