@@ -133,6 +133,7 @@
 						function initialize() {
 							for (var i = 0; i < 2; i++) {
 								var input = document.getElementById('searchTextField' + i);
+								alert(i);
 								var autocomplete = new google.maps.places.Autocomplete(input);
 								google.maps.event.addListener(autocomplete, 'place_changed', function () {
 									var place = autocomplete.getPlace();
@@ -151,7 +152,7 @@
 
 					<div class="row">
 						<div class="col-25">
-							<label for="fname">Where all have you been in the past 48 hours?</label>
+							<label for="searchTextField0">Where all have you been in the past 48 hours?</label>
 						</div>
 						<div class="col-75">
 							<input id="searchTextField0" type="text" size="50" placeholder="Enter a location"
@@ -174,7 +175,7 @@
 			<div class="container" id="reportForm" style="display: none;">
 				<div class="row">
 					<div class="col-25">
-						<label for="fname">Business to Report</label>
+						<label for="searchTextField1">Business to Report</label>
 					</div>
 					<div class="col-75">
 						<input id="searchTextField1" type="text" size="50" placeholder="Enter a location"

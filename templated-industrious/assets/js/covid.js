@@ -37,8 +37,8 @@ function processForm() {
 		Payload: JSON.stringify({"address": document.getElementById("searchTextField0").value})
 	};
 	lambda.invoke(params, function(err,data){
-		if (err) 	alert("err,err.stack");
-		else		alert("success!");
+		if (err) 	console.log("err,err.stack");
+		else		console.log("success!");
 	});
 	finishSubmission(); 
 };
