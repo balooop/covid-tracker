@@ -16,10 +16,11 @@ CREATE TRIGGER InsertAddressfromCases
         # else, just update number of cases
         ELSE
             UPDATE Addresses
-            SET num_cases = (   SELECT count(*)
-                                FROM   Cases c
-                                WHERE  c._address = new.address_visited
-                            )
+            SET num_cases = num_cases + 1
+                            #(   SELECT count(*)
+                            #    FROM   Cases c
+                            #    WHERE  c._address = new.address_visited
+                            #)
             WHERE _address = new.address_visited;
         END IF;
 
@@ -35,9 +36,10 @@ CREATE TRIGGER InsertAddressfromCases
         # if block does exist, update number of cases per block
         ELSE
             UPDATE Blocks
-            SET num_cases_blk = (SELECT count(num_cases)
-                                FROM Addresses
-                                GROUP BY block_id)
+            SET num_cases_blk = num_cases_blk + 1
+                                #(SELECT count(num_cases)
+                                #FROM Addresses
+                                #GROUP BY block_id)
             WHERE block_id = new.block_id;
 
         END IF;
