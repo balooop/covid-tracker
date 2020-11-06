@@ -12,10 +12,14 @@ CREATE TRIGGER InsertAddressfromCases
         IF @count IS NULL THEN 
             INSERT INTO Addresses(_address, block_id, num_cases) 
                         VALUES(new.address_visited, new.block_id, 1);
+        
         # else, just update number of cases
         ELSE
             UPDATE Addresses
-            SET num_cases = num_cases + 1
+            SET num_cases = (   SELECT count(*)
+                                FROM   Cases c
+                                WHERE  c._address = new.address_visited
+                            )
             WHERE _address = new.address_visited;
         END IF;
 
