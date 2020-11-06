@@ -14,9 +14,11 @@ def handler(event, context):
     # connects to database
     with conn.cursor() as cur:
         # finds count of all cases
-        cur.execute('SELECT COUNT(*) FROM Cases WHERE addresses_visited = "' + str(event['address']) + '"')
+        cur.execute('SELECT num_cases FROM Addresses WHERE _address = "' + str(event['address']) + '"')
         result=cur.fetchone()
         conn.commit()
     conn.commit()
+    if result is None:
+        return 0
     return result[0]
     
