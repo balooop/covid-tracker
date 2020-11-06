@@ -16,6 +16,8 @@ function positive() {
 	var x = document.getElementById("isolationSection");
 	x.style.display = "none";
 
+	window.delOrNot = false;
+
 }
 
 function negative() {
@@ -24,6 +26,8 @@ function negative() {
 
 	var x = document.getElementById("isolationSection");
 	x.style.display = "block";
+
+	window.delOrNot = false;
 }
 
 function report() {
@@ -36,17 +40,15 @@ function noreport() {
 }
 
 function cleared() {
-	var x = document.getElementById("isoForm");
-	x.style.display = "block";
+	window.delOrNot = true;
 }
 function notcleared() {
-	var x = document.getElementById("isoForm");
-	x.style.display = "none";
+	window.delOrNot = false;
 }
 
 // called when 
 function processForm() {
-	if (document.getElementById("netid").value == false){
+	if (document.getElementById("netid").value == false) {
 		alert("Please input your NetID");
 		return;
 	}
@@ -54,7 +56,7 @@ function processForm() {
 	var params = {
 		FunctionName: 'arn:aws:lambda:us-east-2:834423887668:function:submit',
 		InvocationType: 'RequestResponse',
-		Payload: JSON.stringify({ "address": document.getElementById("searchTextField0").value, "NetId":  document.getElementById("netid").value})
+		Payload: JSON.stringify({ "address": document.getElementById("searchTextField0").value, "NetID": document.getElementById("netid").value, "Delete": window.delOrNot })
 	};
 	lambda.invoke(params, function (err, data) {
 		if (err) console.log("err,err.stack");
@@ -84,7 +86,7 @@ function searchCasesByAddr() {
 	var params = {
 		FunctionName: 'arn:aws:lambda:us-east-2:834423887668:function:searchCases',
 		InvocationType: 'RequestResponse',
-		Payload: JSON.stringify({ "address": document.getElementById("searchTextField2").value})
+		Payload: JSON.stringify({ "address": document.getElementById("searchTextField2").value })
 	};
 	// alert(document.getElementById("searchTextField2").value);
 	var numCases = 0;

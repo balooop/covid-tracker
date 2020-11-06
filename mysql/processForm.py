@@ -20,42 +20,34 @@ except pymysql.MySQLError as e:
     
 # logger.info("SUCCESS: Connection to RDS MySQL instance succeeded")
 def handler(event, context):
-    addCase(str(event['address']))
+    if event['Delete'] == True:
+        removeCase(str(event['NetID']))
+    else: 
+        addCase(str(event['address']), str(event['NetID']))
 
 
-def addCase(addresses_visited):
+def addCase(addresses_visited, netid):
     ### insert case into Cases table
     # generate UUID for case
-    case_id = str(uuid.uuid1())
     
     # connects to database
     with conn.cursor() as cur:
         # compute 'block_id'
-        num_spaces = 0
         street_address = addresses_visited.split(',')[0].split(' ')
         block_id = str((int(street_address[0])//100)*100) + ''.join(street_address[1:])
 
 
         # inserts case into Cases
-        cur.execute('INSERT into Cases (address_visited, case_id, timestamp, block_id) Values ("'+addresses_visited+'", "'+case_id+'", CURRENT_TIMESTAMP, "'+block_id+'")')
+        cur.execute('INSERT into Cases (address_visited, netid, timestamp, block_id) Values ("'+addresses_visited+'", "'+netid+'", CURRENT_TIMESTAMP, "'+block_id+'")')
         conn.commit()
-    
         
-        conn.commit()
+    cur.close()
     return
     
-# parse data from website (addresses visited + businesses reported)
-# call two functions: 1 for addresses, 1 for businesses (dummy)
-# addresses function:
-#   insert into Cases table (X)
-#   check if address exists in Addresses table
-#       if no: 
-#           calculate block_id
-#           create new row in Addresses table: cases == 1
-#           update number of cases in block
-#               
-#       if yes:
-#           find address in table
-#           update num_cases
-#           find block in table
-#           update num cases_blk
+def removeCase(netid):
+    with conn.cursor() as cur:
+        cur.execute('DELETE from Cases c WHERE c.netid = "'+netid+'"')
+        conn.commit()
+
+    cur.close()
+    return
