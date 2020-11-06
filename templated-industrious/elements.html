@@ -14,6 +14,7 @@
 	<meta name="keywords" content="" />
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<script src="https://maps.googleapis.com/maps/api/jsvv=3.exp&sensor=false&libraries=places"></script>
+	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.92.0.min.js"></script>
 	<script type="text/javascript"
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA653OyjftmU3g_j2Sn8VidNicpeOBVibc&libraries=places"></script>
 </head>
@@ -55,7 +56,7 @@
 										autocomplete="on" runat="server" />
 								</div>
 							</div>
-							<a class="button" style="margin: auto;" onclick="displayCasesforAddress();">Search</a>
+							<a class="button" style="margin: auto;" onclick="searchCasesByAddr();">Search</a>
 						</div>
 					</div>
 				</div>
@@ -67,10 +68,10 @@
 									<div class="card text-center">
 										<div class="title">
 											<i class="fa fa-rocket" aria-hidden="true"></i>
-											<h2>Address</h2>
+											<h2 id="casescardaddr"></h2>
 										</div>
 										<div class="price">
-											<h4><sup>Cases</sup><br>100</h4>
+											<h4><sup>Cases</sup><h4><br><h4 id="casescardcount"></h4>
 										</div>
 										<a class="button" style="margin: auto;" onclick="searchAgain();">Search
 											again</a>
