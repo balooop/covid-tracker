@@ -48,8 +48,8 @@ function notcleared() {
 
 // called when 
 function processForm() {
-	if (document.getElementById("netid").value == false) {
-		alert("Please input your NetID");
+	if (document.getElementById("searchTextField2").value == false) {
+		alert("Please input address");
 		return;
 	}
 	var lambda = new AWS.Lambda({ region: 'us-east-2', apiVersion: '2015-03-31' });
@@ -82,6 +82,10 @@ function processForm() {
 
 
 function searchCasesByAddr() {
+	if (document.getElementById("netid").value == false) {
+		alert("Please input your NetID");
+		return;
+	}
 	var lambda = new AWS.Lambda({ region: 'us-east-2', apiVersion: '2015-03-31' });
 	var params = {
 		FunctionName: 'arn:aws:lambda:us-east-2:834423887668:function:searchCases',
