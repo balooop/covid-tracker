@@ -48,8 +48,8 @@ function notcleared() {
 
 // called when 
 function processForm() {
-	if (document.getElementById("searchTextField2").value == false) {
-		alert("Please input address");
+	if (document.getElementById("netid").value == false) {
+		alert("Please your NetID");
 		return;
 	}
 	var lambda = new AWS.Lambda({ region: 'us-east-2', apiVersion: '2015-03-31' });
@@ -64,7 +64,7 @@ function processForm() {
 	});
 	finishSubmission();
 };
-
+// {"errorMessage": "'NoneType' object is not subscriptable", "errorType": "TypeError", "stackTrace": [" File \"/var/task/lambda_function.py\", line 21, in handler\n return result[0]\n"]}
 
 // function deleteEntry() {
 // 	var lambda = new AWS.Lambda({ region: 'us-east-2', apiVersion: '2015-03-31' });
@@ -82,8 +82,8 @@ function processForm() {
 
 
 function searchCasesByAddr() {
-	if (document.getElementById("netid").value == false) {
-		alert("Please input your NetID");
+	if (document.getElementById("searchTextField2").value == false) {
+		alert("Please input addr");
 		return;
 	}
 	var lambda = new AWS.Lambda({ region: 'us-east-2', apiVersion: '2015-03-31' });
