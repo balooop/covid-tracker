@@ -12,7 +12,7 @@ CREATE TRIGGER DeleteCase
 
         UPDATE Addresses
         SET num_cases = num_cases - 1
-        WHERE _address = old.netid;
+        WHERE _address = old.address_visited;
         
         UPDATE Blocks
         SET num_cases_blk = num_cases_blk - 1
