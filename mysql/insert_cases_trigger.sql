@@ -17,8 +17,8 @@ CREATE TRIGGER InsertAddressfromCases
         ELSE
             UPDATE Addresses
             SET num_cases = (   SELECT count(*)
-                                FROM   Cases c join Addresses a on c.address_visited = a._address
-                                WHERE   a._address = new.address_visited
+                                FROM   Cases c
+                                WHERE  c._address = new.address_visited
                             )
             WHERE _address = new.address_visited;
         END IF;
