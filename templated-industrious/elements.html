@@ -55,6 +55,7 @@
 										autocomplete="on" runat="server" />
 								</div>
 							</div>
+							<a class="button" style="margin: auto;">Search</a>
 						</div>
 					</div>
 				</div>
@@ -64,7 +65,6 @@
 			function initialize() {
 				for (var i = 2; i < 3; i++) {
 					var input = document.getElementById('searchTextField' + i);
-					alert(i);
 					var autocomplete = new google.maps.places.Autocomplete(input);
 					google.maps.event.addListener(autocomplete, 'place_changed', function () {
 						var place = autocomplete.getPlace();

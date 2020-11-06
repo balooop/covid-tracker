@@ -133,7 +133,6 @@
 						function initialize() {
 							for (var i = 0; i < 2; i++) {
 								var input = document.getElementById('searchTextField' + i);
-								alert(i);
 								var autocomplete = new google.maps.places.Autocomplete(input);
 								google.maps.event.addListener(autocomplete, 'place_changed', function () {
 									var place = autocomplete.getPlace();
@@ -214,20 +213,22 @@
 				</div> -->
 				</form>
 			</div>
-				<!-- <input type="submit" value="Submit" onclick="processForm();" style="top: 50%; bottom: 50%;"> -->
-				<a class="button" onclick="processForm();" style="margin: auto;">Submit</a>
+			<!-- <input type="submit" value="Submit" onclick="processForm();" style="top: 50%; bottom: 50%;"> -->
+			<a class="button" onclick="processForm();" style="margin: auto;">Submit</a>
 		</div>
 	</section>
 
 	<!-- CTA -->
 	<section id="cta" class="wrapper">
 		<div class="inner">
-			<h2>Curabitur ullamcorper ultricies</h2>
-			<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non
-				faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan
-				varius montes viverra nibh in adipiscing. Lorem ipsum dolor vestibulum ante ipsum primis in faucibus
-				vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing sed feugiat eu faucibus. Integer
-				ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
+			<h2>If you think you have COVID-19 or have been exposed</h2>
+			<div>Please immediately isolate and utilitze these resources for more information. Seek emergency help if
+				conditions worsen. <br>
+				<li><a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html">Centers for Disease Control and
+						Prevention</a></li>
+				<li><a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019">World Health
+						Organization</a></li>
+			</div>
 		</div>
 	</section>
 
@@ -235,51 +236,79 @@
 	<section class="wrapper">
 		<div class="inner">
 			<header class="special">
-				<h2>Faucibus consequat lorem</h2>
-				<p>In arcu accumsan arcu adipiscing accumsan orci ac. Felis id enim aliquet. Accumsan ac integer
-					lobortis commodo ornare aliquet accumsan erat tempus amet porttitor.</p>
+				<h2>Our amazing creators!</h2>
+				<!-- <p>In arcu accumsan arcu adipiscing accumsan orci ac. Felis id enim aliquet. Accumsan ac integer
+					lobortis commodo ornare aliquet accumsan erat tempus amet porttitor.</p> -->
 			</header>
 			<div class="testimonials">
 				<section>
 					<div class="content">
 						<blockquote>
-							<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem
-								non mi integer non faucibus.</p>
+							<p>"I just copy and paste blocks of code from one place to another. Sometimes I have fun."
+							</p>
 						</blockquote>
 						<div class="author">
 							<div class="image">
 								<img src="images/pic01.jpg" alt="" />
 							</div>
-							<p class="credit">- <strong>Jane Doe</strong> <span>CEO - ABC Inc.</span></p>
+							<p class="credit">- <strong>Eshan Dhar</strong> <span>UI/UX Designer - Grape Inc.</span></p>
 						</div>
+						<a href="https://www.linkedin.com/in/eshandhar/"><i class="icon fa-linkedin"></i></a>
+						<a href="https://github.com/Eshand"><i class="icon fa-github"></i></a>
+						<a href="https://www.instagram.com/eshan.d/?hl=en"><i class="icon fa-instagram"></i></a>
+						<!-- <a href="#"><i class="icon fa-twitter"></i></a>
+						<a href="#"><i class="icon fa-facebook"></i></a> -->
 					</div>
 				</section>
 				<section>
 					<div class="content">
 						<blockquote>
-							<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem
-								non mi integer non faucibus.</p>
-						</blockquote>
-						<div class="author">
-							<div class="image">
-								<img src="images/pic03.jpg" alt="" />
-							</div>
-							<p class="credit">- <strong>John Doe</strong> <span>CEO - ABC Inc.</span></p>
-						</div>
-					</div>
-				</section>
-				<section>
-					<div class="content">
-						<blockquote>
-							<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem
-								non mi integer non faucibus.</p>
+							<p>"I worship Bezos occasionally. My other hobbies include TikTok and filling out job apps."
+							</p>
 						</blockquote>
 						<div class="author">
 							<div class="image">
 								<img src="images/pic02.jpg" alt="" />
 							</div>
-							<p class="credit">- <strong>Janet Smith</strong> <span>CEO - ABC Inc.</span></p>
+							<p class="credit">- <strong>Pavan Baloo</strong> <span>Ex-AWS Employee - Grape Inc.</span>
+							</p>
 						</div>
+						<a href="https://www.linkedin.com/in/pavanbaloo/"><i class="icon fa-linkedin"></i></a>
+						<a href="https://github.com/balooop"><i class="icon fa-github"></i></a>
+						<a href="https://www.instagram.com/baloooop/?hl=en"><i class="icon fa-instagram"></i></a>
+					</div>
+				</section>
+				<section>
+					<div class="content">
+						<blockquote>
+							<p>"One way or the other I WILL end the night with alcohol in my body."</p>
+						</blockquote>
+						<div class="author">
+							<div class="image">
+								<img src="images/pic03.jpg" alt="" />
+							</div>
+							<p class="credit">- <strong>Meet 'Meetsy-Beetsy' Patel</strong> <span>AWS Certificate Holder
+									- Grape Inc.</span></p>
+						</div>
+						<a href="https://www.linkedin.com/in/meetupatel/"><i class="icon fa-linkedin"></i></a>
+						<a href="https://github.com/meetup2"><i class="icon fa-github"></i></a>
+						<a href="https://www.instagram.com/_meet13patel/"><i class="icon fa-instagram"></i></a>
+					</div>
+				</section>
+				<section>
+					<div class="content">
+						<blockquote>
+							<p>"..."</p>
+						</blockquote>
+						<div class="author">
+							<div class="image">
+								<img src="images/pic04.jpg" alt="" />
+							</div>
+							<p class="credit">- <strong>Naveen Nathan</strong> <span>Blueberry - Grape Inc.</span></p>
+						</div>
+						<a href="https://www.linkedin.com/in/naveen-nathan/"><i class="icon fa-linkedin"></i></a>
+						<a href="https://github.com/naveennathan"><i class="icon fa-github"></i></a>
+						<a href="https://www.instagram.com/naveen_n6/"><i class="icon fa-instagram"></i></a>
 					</div>
 				</section>
 			</div>
@@ -291,14 +320,13 @@
 		<div class="inner">
 			<div class="content">
 				<section>
-					<h3>Accumsan montes viverra</h3>
-					<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer
-						non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem
-						accumsan varius montes viverra nibh in adipiscing. Lorem ipsum dolor vestibulum ante ipsum
-						primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing sed
-						feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
+					<h3>About this project</h3>
+					<p>This project was made for the class CS411 at the University of Illinois at Urbana-Champaign with
+						the intention of helping thousands of students make safer decisions in regards to COVID-19. We
+						believe that knowledge is power, and we hope to be able to bring that power to students, staff,
+						and local residents to be able to make smarter, more informed decisions.</p>
 				</section>
-				<section>
+				<!-- <section>
 					<h4>Sem turpis amet semper</h4>
 					<ul class="alt">
 						<li><a href="#">Dolor pulvinar sed etiam.</a></li>
@@ -315,11 +343,10 @@
 						<li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
 						<li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
 					</ul>
-				</section>
+				</section> -->
 			</div>
 			<div class="copyright">
-				&copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a
-					href="https://coverr.co">Coverr</a>.
+				&copy; GRAPE.
 			</div>
 		</div>
 	</footer>
