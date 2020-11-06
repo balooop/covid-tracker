@@ -2859,16 +2859,40 @@ body.is-menu-visible #menu {
     /* background-color: #f2f2f2; */
     padding: 20px;
   }
-  
+  .col-10 {
+    float: left;
+    width: 10%;
+    margin-top: 6px;
+  }
   .col-25 {
     float: left;
     width: 25%;
     margin-top: 6px;
   }
+  .col-small {
+    float: left;
+    /* width: 25%; */
+    margin-top: 6px;
+  }
+  .col-50 {
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+  }
   
   .col-75 {
-    float: left;
+    float: inline-start;
     width: 75%;
+    margin-top: 6px;
+  }
+  .col-90 {
+    float: left;
+    width: 90%;
+    margin-top: 6px;
+  }
+  .col-100 {
+    float: left;
+    width: 100%;
     margin-top: 6px;
   }
   

@@ -45,90 +45,16 @@
 			<h2>Thank you for your submission!</h2>
 		</header>
 		<div class="inner" id="formInner">
-			<header class="special">
+			<form action="/action_page.php">
 				<h2>Have you recently tested positive?</h2>
-				<div class="cd-switch">
-					<div class="switch">
-						<input type="radio" name="choice" id="yesPos" onclick="positive();">
-						<label for="yesPos">Yes</label>
-						<input type="radio" name="choice" id="noPos" onclick="negative();">
-						<label for="noPos">No</label>
-						<span class="switchFilter"></span>
-					</div>
+				<div class="cd-switch switch">
+					<input type="radio" name="choice" id="yesPos" onclick="positive();">
+					<label for="yesPos">Yes</label>
+					<input type="radio" name="choice" id="noPos" onclick="negative();">
+					<label for="noPos">No</label>
+					<span class="switchFilter"></span>
 				</div>
-			</header>
-			<!-- <div class="highlights">
-						<section>
-							<div class="content">
-								<header>
-									<a href="#" class="icon fa-vcard-o"><span class="label">Icon</span></a>
-									<h3>Feugiat consequat</h3>
-								</header>
-								<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-							</div>
-						</section>
-						<section>
-							<div class="content">
-								<header>
-									<a href="#" class="icon fa-files-o"><span class="label">Icon</span></a>
-									<h3>Ante sem integer</h3>
-								</header>
-								<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-							</div>
-						</section>
-						<section>
-							<div class="content">
-								<header>
-									<a href="#" class="icon fa-floppy-o"><span class="label">Icon</span></a>
-									<h3>Ipsum consequat</h3>
-								</header>
-								<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-							</div>
-						</section>
-						<section>
-							<div class="content">
-								<header>
-									<a href="#" class="icon fa-line-chart"><span class="label">Icon</span></a>
-									<h3>Interdum gravida</h3>
-								</header>
-								<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-							</div>
-						</section>
-						<section>
-							<div class="content">
-								<header>
-									<a href="#" class="icon fa-paper-plane-o"><span class="label">Icon</span></a>
-									<h3>Faucibus consequat</h3>
-								</header>
-								<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-							</div>
-						</section>
-						<section>
-							<div class="content">
-								<header>
-									<a href="#" class="icon fa-qrcode"><span class="label">Icon</span></a>
-									<h3>Accumsan viverra</h3>
-								</header>
-								<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-							</div>
-						</section>
-					</div> -->
-			<div class="container" id="posForm" style="display: none;">
-				<form action="/action_page.php">
-					<!-- <script>
-						function initialize() {
-							var input = document.getElementById('searchTextField0');
-							var autocomplete = new google.maps.places.Autocomplete(input);
-							google.maps.event.addListener(autocomplete, 'place_changed', function () {
-								var place = autocomplete.getPlace();
-								document.getElementById('city2').value = place.name;
-								document.getElementById('cityLat').value = place.geometry.location.lat();
-								document.getElementById('cityLng').value = place.geometry.location.lng();
-							});
-						}
-						google.maps.event.addDomListener(window, 'load', initialize);
-					</script> -->
-
+				<div class="container" id="posForm" style="display: none;">
 					<script>
 						function initialize() {
 							for (var i = 0; i < 2; i++) {
@@ -144,11 +70,6 @@
 						}
 						google.maps.event.addDomListener(window, 'load', initialize);
 					</script>
-
-					<!-- <input type="hidden" id="city2" name="city2" />
-								<input type="hidden" id="cityLat" name="cityLat" />
-								<input type="hidden" id="cityLng" name="cityLng" /> -->
-
 					<div class="row">
 						<div class="col-25">
 							<label for="searchTextField0">Where all have you been in the past 48 hours?</label>
@@ -158,62 +79,54 @@
 								autocomplete="on" runat="server" />
 						</div>
 					</div>
-			</div>
-			<header class="special">
-				<h2>Would you like to report any businesses not following COVID-19 guidelines?</h2>
-				<div class="cd-switch">
-					<div class="switch">
-						<input type="radio" name="choice" id="yes" onclick="report();">
-						<label for="yes">Yes</label>
-						<input type="radio" name="choice" id="no" onclick="noreport();">
-						<label for="no">No</label>
+				</div>
+			</form>
+			<form action="/action_page.php">
+
+				<div id="isolationSection" style="display: none;">
+					<h2>Have you recently been cleared from isolation?</h2>
+					<div class="cd-switch switch">
+						<input type="radio" name="choice" id="yesIso" onclick="cleared();">
+						<label for="yesIso">Yes</label>
+						<input type="radio" name="choice" id="noIso" onclick="notcleared();">
+						<label for="noIso">No</label>
 						<span class="switchFilter"></span>
 					</div>
 				</div>
-			</header>
-			<div class="container" id="reportForm" style="display: none;">
-				<div class="row">
-					<div class="col-25">
-						<label for="searchTextField1">Business to Report</label>
-					</div>
-					<div class="col-75">
-						<input id="searchTextField1" type="text" size="50" placeholder="Enter a location"
-							autocomplete="on" runat="server" />
-					</div>
+			</form>
 
+
+			<form action="/action_page.php">
+				<h2>Would you like to report any businesses not following COVID-19 guidelines?</h2>
+				<div class="cd-switch switch">
+					<input type="radio" name="choice" id="yes" onclick="report();">
+					<label for="yes">Yes</label>
+					<input type="radio" name="choice" id="no" onclick="noreport();">
+					<label for="no">No</label>
+					<span class="switchFilter"></span>
 				</div>
-				<!-- <div class="row">
-					<div class="col-25">
-						<label for="lname">Last Name</label>
+				<div class="container" id="reportForm" style="display: none;">
+					<div class="row">
+						<div class="col-small">
+							<label for="searchTextField1">Business to Report</label>
+						</div>
+						<div class="col-75">
+							<input id="searchTextField1" type="text" size="50" placeholder="Enter a location"
+								autocomplete="on" runat="server" />
+						</div>
 					</div>
-					<div class="col-75">
-						<input type="text" id="lname" name="lastname" placeholder="Your last name..">
-					</div>
-				</div> -->
-				<!-- <div class="row">
-					<div class="col-25">
-						<label for="country">Country</label>
-					</div>
-					<div class="col-75">
-						<select id="country" name="country">
-							<option value="australia">Australia</option>
-							<option value="canada">Canada</option>
-							<option value="usa">USA</option>
-						</select>
-					</div>
-				</div> -->
-				<!-- <div class="row">
-					<div class="col-25">
-						<label for="subject">Subject</label>
-					</div>
-					<div class="col-75">
-						<textarea id="subject" name="subject" placeholder="Write something.."
-							style="height:200px"></textarea>
-					</div>
-				</div> -->
-				</form>
+				</div>
+			</form>
+			<div class="row">
+				<div class="col-small">
+					<label for="netid">NetID</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="netid" name="netid" size="50" placeholder="Your University NetID..">
+				</div>
 			</div>
-			<!-- <input type="submit" value="Submit" onclick="processForm();" style="top: 50%; bottom: 50%;"> -->
+
+
 			<a class="button" onclick="processForm();" style="margin: auto;">Submit</a>
 		</div>
 	</section>
@@ -237,8 +150,7 @@
 		<div class="inner">
 			<header class="special">
 				<h2>Our amazing creators!</h2>
-				<!-- <p>In arcu accumsan arcu adipiscing accumsan orci ac. Felis id enim aliquet. Accumsan ac integer
-					lobortis commodo ornare aliquet accumsan erat tempus amet porttitor.</p> -->
+
 			</header>
 			<div class="testimonials">
 				<section>
@@ -298,7 +210,7 @@
 				<section>
 					<div class="content">
 						<blockquote>
-							<p>"..."</p>
+							<p>"Built different. That just doesn't make any sense..."</p>
 						</blockquote>
 						<div class="author">
 							<div class="image">
