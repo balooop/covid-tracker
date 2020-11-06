@@ -43,6 +43,24 @@ function processForm() {
 	finishSubmission();
 };
 
+function searchCasesByAddr() {
+	var lambda = new AWS.Lambda({ region: 'us-east-2', apiVersion: '2015-03-31' });
+	var params = {
+		FunctionName: 'arn:aws:lambda:us-east-2:834423887668:function:searchCases',
+		InvocationType: 'RequestResponse',
+		Payload: JSON.stringify({ "address": document.getElementById("searchTextField2").value })
+	};
+	// alert(document.getElementById("searchTextField2").value);
+	var numCases = 0;
+	lambda.invoke(params, function (err, data) {
+		if (err) console.log("err,err.stack");
+		else console.log("success!");
+		console.log(data);
+		numCases = data.Payload;
+		displayCasesforAddress(document.getElementById("searchTextField2").value, numCases);
+	});
+};
+
 function finishSubmission() {
 	var x = document.getElementById("thankYou");
 	x.style.display = "block";
@@ -55,9 +73,16 @@ function finishSubmission() {
 
 }
 
-function displayCasesforAddress() {
+function displayCasesforAddress(addr, count) {
+
 	var x = document.getElementById("searchbyaddr");
 	x.style.display = "none";
+
+	var x = document.getElementById("casescardaddr");
+	x.innerHTML = addr;
+
+	var x = document.getElementById("casescardcount");
+	x.innerHTML = count;
 
 	var x = document.getElementById("casescard");
 	x.style.display = "block";
