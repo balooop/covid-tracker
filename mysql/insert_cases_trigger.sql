@@ -21,6 +21,12 @@ CREATE TRIGGER InsertAddressfromCases
 
 
 
+    END;
+    $$
+    DELIMITER ;
+
+
+
 /* DELIMITER $$
 CREATE TRIGGER InsertAddressfromCases
     AFTER INSERT ON Cases
