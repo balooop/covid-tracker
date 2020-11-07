@@ -56,7 +56,7 @@ function processForm() {
 	var params = {
 		FunctionName: 'arn:aws:lambda:us-east-2:834423887668:function:submit',
 		InvocationType: 'RequestResponse',
-		Payload: JSON.stringify({ "address": document.getElementById("searchTextField0").value, "NetID": document.getElementById("netid").value.toLowerCase(), "Delete": window.delOrNot })
+		Payload: JSON.stringify({ "address": document.getElementById("searchTextField0").value, "NetID": document.getElementById("netid").value.toLowerCase().trim(), "Delete": window.delOrNot })
 	};
 	lambda.invoke(params, function (err, data) {
 		if (err) console.log("err,err.stack");
