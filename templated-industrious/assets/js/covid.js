@@ -136,3 +136,122 @@ function searchAgain() {
 	var x = document.getElementById("casescard");
 	x.style.display = "none";
 }
+
+function eshanSecondTest() {
+	var myConfig = {
+		"type": "treemap",
+		"options": {
+			"split-type": "balanced",
+			"color-type": "palette",
+			"palette": ["#1ab7ea", "#ff5700", "#cd201f", "#25D366", "#FFFC00", "#3aaf85", "#f1c40f", "#17968e",
+				"#f7b362", "#F58F84", "#5B3256", "#317589", "#6B9362"]
+		},
+		"plotarea": {
+			"margin": "0 0 35 0"
+		},
+		"series": [{
+			"text": "North America - ",
+			"children": [{
+				"text": "United States",
+				"children": [{
+					"text": "Texas",
+					"value": 90
+				}]
+			},
+			{
+				"text": "Canada",
+				"value": 113
+			},
+			{
+				"text": "Mexico",
+				"value": 78
+			}
+			]
+		},
+		{
+			"text": "Europe",
+			"children": [{
+				"text": "France",
+				"value": 42
+			},
+			{
+				"text": "Spain",
+				"value": 28
+			}
+			]
+		},
+		{
+			"text": "Africa",
+			"children": [{
+				"text": "Egypt",
+				"value": 22
+			},
+			{
+				"text": "Congo",
+				"value": 38
+			}
+			]
+		},
+		{
+			"text": "Asia",
+			"children": [{
+				"text": "India",
+				"value": 92
+			},
+			{
+				"text": "China",
+				"value": 68
+			}
+			]
+		},
+		{
+			"text": "South America",
+			"children": [{
+				"text": "Brazil",
+				"value": 42
+			},
+			{
+				"text": "Argentina",
+				"value": 28
+			}
+			]
+		},
+		{
+			"text": "Australia (continent)",
+			"children": [{
+				"text": "Australia (country)",
+				"value": 121
+			},
+			{
+				"text": "New Zealand",
+				"value": 24
+			}
+			]
+		}
+		]
+	};
+	var x = document.getElementById("myChart");
+	var y = document.getElementById("noDataText");
+	if (myConfig.series.length > 0){
+		x.style.display = "block";
+		y.style.display = "none";
+	}
+	else{
+		x.style.display = "none";
+		y.style.display = "block";
+	}
+
+	zingchart.render({
+		id: 'myChart',
+		data: myConfig,
+		height: '100%',
+		width: '100%'
+	});
+
+	//   document.getElementById('treemap-layout').addEventListener('change', function(e) {
+	// 	myConfig.options['split-type'] = e.srcElement.value;
+	// 	zingchart.exec('myChart', 'setdata', {
+	// 	  data: myConfig
+	// 	});
+	//   })
+}

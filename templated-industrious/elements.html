@@ -13,6 +13,8 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<script src="assets/js/covid.js"></script>
+	<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/jsvv=3.exp&sensor=false&libraries=places"></script>
 	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.92.0.min.js"></script>
 	<script type="text/javascript"
@@ -91,10 +93,18 @@
 						</div>
 					</div>
 				</section>
+				<h2><b>Current COVID-19 Hotspots</b></h2>
+				<div id="myChart"></div>
+				<div class="row" id="noDataText" style="display: none;">
+					<div class="col-6 col-12-medium">
+						<h3><b>No COVID-19 case data currently availble.</b></h3>
+					</div>
+				</div>
 			</div>
 		</section>
 		<script>
 			function initialize() {
+				eshanSecondTest();
 				for (var i = 2; i < 3; i++) {
 					var input = document.getElementById('searchTextField' + i);
 					var autocomplete = new google.maps.places.Autocomplete(input);

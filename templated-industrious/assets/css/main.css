@@ -3042,3 +3042,24 @@ font-size: 16px;
   font-size: 80px;
 }
   
+html,
+    body {
+      height: 100%;
+      width: 100%;
+      margin: 0px;
+      padding: 0px;
+    }
+
+    #myChart {
+      height: 100%;
+      width: 100%;
+      min-height: 500px;
+    }
+
+    .zc-ref {
+      display: none;
+    }
+
+    select {
+      margin: 10px;
+    }
