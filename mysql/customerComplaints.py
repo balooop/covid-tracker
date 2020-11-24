@@ -27,12 +27,12 @@ def handler(event, context):
     sickFlag = 0
     dirtyFlag = 0
     
-    maskWords = ['not wearing', 'covering', 'wearing', 'not wearing']
-    socialDistancing = ['too many people', 'no social distancing']
-    sick = ['cough', 'coughing', 'sick', 'ill']
-    dirty = ['dirty', 'nasty', 'gross', 'not clean', '']
+    maskWords = ['no mask', 'lost mask', 'on chin', 'nose', '', 'covering', 'not wearing', "weren't wearing", "wasn't wearing", "isn't wearing", ""]
+    socialDistancing = ['too many people', 'no social distancing', 'crowded']
+    sick = ['cough', 'coughing', 'sick', 'ill', 'sneeze', 'covid', ]
+    dirty = ['dirty', 'nasty', 'gross', 'not clean', 'rancid', 'unsanitary', 'unhygenic', 'health concerns', 'smells bad', 'not hygenic', 'bad hygenie', 'concern for health']
     
-    words = event['Complaints']
+    words = event['Complaints'].lower()
     for word in maskWords:
         if word in words:
             maskFlag = 1
@@ -45,7 +45,7 @@ def handler(event, context):
         if word in words:
             sickFlag = 1
             break
-    for word in dirtyFlag:
+    for word in dirty:
         if word in words:
             dirtyFlag = 1
             break
