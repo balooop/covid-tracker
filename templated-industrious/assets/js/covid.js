@@ -1,8 +1,9 @@
 // Configure AWS SDK for JavaScript & set region and credentials
 // Initialize the Amazon Cognito credentials provider
-AWS.config.region = 'us-east-2'; // Region
+// CHANGE
+AWS.config.region = 'us-east-1'; // Region
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-	IdentityPoolId: 'us-east-2:fad8bf8b-3e89-436a-8120-f35b1c8c3d7e',
+	IdentityPoolId: 'us-east-1:5e1316c9-1ebf-425d-80a9-9a0dc3dbba29',
 });
 AWS.config.apiVersions = {
 	lambda: '2015-03-31',
@@ -52,9 +53,11 @@ function processForm() {
 		alert("Please input your NetID");
 		return;
 	}
-	var lambda = new AWS.Lambda({ region: 'us-east-2', apiVersion: '2015-03-31' });
+	// CHANGE
+	var lambda = new AWS.Lambda({ region: 'us-east-1', apiVersion: '2015-03-31' });
 	var params = {
-		FunctionName: 'arn:aws:lambda:us-east-2:834423887668:function:submit',
+		// 
+		FunctionName: 'arn:aws:lambda:us-east-1:834423887668:function:submit',
 		InvocationType: 'RequestResponse',
 		Payload: JSON.stringify({ "address": document.getElementById("searchTextField0").value, "NetID": document.getElementById("netid").value.toLowerCase().trim(), "Delete": window.delOrNot })
 	};
@@ -64,31 +67,15 @@ function processForm() {
 	});
 	finishSubmission();
 };
-// {"errorMessage": "'NoneType' object is not subscriptable", "errorType": "TypeError", "stackTrace": [" File \"/var/task/lambda_function.py\", line 21, in handler\n return result[0]\n"]}
-
-// function deleteEntry() {
-// 	var lambda = new AWS.Lambda({ region: 'us-east-2', apiVersion: '2015-03-31' });
-// 	var params = {
-// 		FunctionName: 'arn:aws:lambda:us-east-2:834423887668:function:submit',
-// 		InvocationType: 'RequestResponse',
-// 		Payload: JSON.stringify({ "address": document.getElementById("searchTextField0").value, "NetId":  document.getElementById("netid").value})
-// 	};
-// 	lambda.invoke(params, function (err, data) {
-// 		if (err) console.log("err,err.stack");
-// 		else console.log("success!");
-// 	});
-// };
-
-
 
 function searchCasesByAddr() {
 	if (document.getElementById("searchTextField2").value == false) {
 		alert("Please input your address");
 		return;
 	}
-	var lambda = new AWS.Lambda({ region: 'us-east-2', apiVersion: '2015-03-31' });
+	var lambda = new AWS.Lambda({ region: 'us-east-1', apiVersion: '2015-03-31' });
 	var params = {
-		FunctionName: 'arn:aws:lambda:us-east-2:834423887668:function:searchCases',
+		FunctionName: 'arn:aws:lambda:us-east-1:834423887668:function:searchCases',
 		InvocationType: 'RequestResponse',
 		Payload: JSON.stringify({ "address": document.getElementById("searchTextField2").value })
 	};

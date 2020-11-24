@@ -3,11 +3,13 @@ import logging
 import pymysql
 from datetime import datetime
 import uuid
+import re
 #rds settings
-rds_host  = 'covid-tracker-locations-db.c8wmeg2eqxqu.us-east-2.rds.amazonaws.com'
+# CHANGE RDS_HOST AND DB_NAME
+rds_host  = 'covid-tracker.c7ic0rieoltc.us-east-1.rds.amazonaws.com'
 username = 'admin'
-password = 'password'
-db_name = 'covid_locations_db'
+password = 'Cov1dgrap3'
+db_name = 'covid-tracker'
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -33,8 +35,10 @@ def addCase(addresses_visited, netid):
     # connects to database
     with conn.cursor() as cur:
         # compute 'block_id'
+        firstHalf = addresses_visited.split(' ')[0]
+        firstHalf = re.sub("[^0-9]", "", firstHalf)
         street_address = addresses_visited.split(',')[0].split(' ')
-        block_id = str((int(street_address[0])//100)*100) + ''.join(street_address[1:])
+        block_id = str((int(firstHalf)//100)*100) + ''.join(street_address[1:])
 
 
         # inserts case into Cases

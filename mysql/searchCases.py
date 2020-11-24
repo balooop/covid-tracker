@@ -1,10 +1,11 @@
 import pymysql
 
 #rds settings
-rds_host  = 'covid-tracker-locations-db.c8wmeg2eqxqu.us-east-2.rds.amazonaws.com'
+# CHANGE RDS_HOST AND DB_NAME
+rds_host  = 'covid-tracker.c7ic0rieoltc.us-east-1.rds.amazonaws.com'
 username = 'admin'
-password = 'password'
-db_name = 'covid_locations_db'  
+password = 'Cov1dgrap3'
+db_name = 'covid-tracker'  
 
 conn = pymysql.connect(rds_host, user=username, passwd=password, db=db_name, connect_timeout=5)
     
