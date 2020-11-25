@@ -157,6 +157,7 @@ function searchAgain() {
 }
 
 function eshanSecondTest() {
+	ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
 	var myConfig = {
 		"type": "treemap",
 		"options": {
@@ -243,7 +244,9 @@ function eshanSecondTest() {
 			},
 			{
 				"text": "New Zealand",
-				"value": 24
+				"cases": 5,
+				"reports": 10,
+				"value": (5+10)/2
 			}
 			]
 		}
