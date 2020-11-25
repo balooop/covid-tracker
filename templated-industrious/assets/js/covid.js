@@ -54,7 +54,7 @@ function processForm() {
 		return;
 	}
 	// CHANGE
-	// if (document.getElementById("posForm").style.display == "block" && document.getElementById("searchTextField0").value != "") {
+	if (document.getElementById("posForm").style.display == "block" && document.getElementById("searchTextField0").value != "") {
 		var lambda = new AWS.Lambda({ region: 'us-east-1', apiVersion: '2015-03-31' });
 		var params = {
 			// 
@@ -66,11 +66,11 @@ function processForm() {
 			if (err) console.log(err);
 			else console.log(data);
 		});
-	// }
-	// else if (document.getElementById("posForm").style.display == "block"){
-	// 	alert("Please input an address");
-	// 	return;
-	// }
+	}
+	else if (document.getElementById("posForm").style.display == "block"){
+		alert("Please input an address");
+		return;
+	}
 	customerComplaints();
 	finishSubmission();
 };
@@ -97,6 +97,7 @@ function searchCasesByAddr() {
 };
 
 function customerComplaints() {
+	alert("in");
 	if (document.getElementById("reportForm").style.display == "none") return;
 	if (document.getElementById("businessReport").value == false) {
 		alert("Please input a reason");
@@ -104,7 +105,7 @@ function customerComplaints() {
 	}
 	var lambda = new AWS.Lambda({ region: 'us-east-1', apiVersion: '2015-03-31' });
 	var params = {
-		FunctionName: 'arn:aws:lambda:us-east-1:834423887668:function:searchCases',
+		FunctionName: 'arn:aws:lambda:us-east-1:834423887668:function:customerComplaints',
 		InvocationType: 'RequestResponse',
 		Payload: JSON.stringify({ "Complaints": document.getElementById("businessReport").value })
 	};
@@ -115,8 +116,8 @@ function customerComplaints() {
 		if (err) console.log("err,err.stack");
 		else console.log("success!");
 		console.log(data);
-		numCases = data.Payload;
-		displayCasesforAddress(document.getElementById("searchTextField2").value, numCases);
+		// numCases = data.Payload;
+		// displayCasesforAddress(document.getElementById("searchTextField2").value, numCases);
 	});
 };
 

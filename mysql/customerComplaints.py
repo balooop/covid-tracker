@@ -1,38 +1,38 @@
 import sys
 import logging
-import pymysql
-from datetime import datetime
-import uuid
-import re
-#rds settings
-# CHANGE RDS_HOST AND DB_NAME
-rds_host  = 'covid-tracker.c7ic0rieoltc.us-east-1.rds.amazonaws.com'
-username = 'admin'
-password = 'Cov1dgrap3'
-db_name = 'covid-tracker'
+from pymongo import MongoClient
+import dns
 
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
-try:
-    conn = pymysql.connect(rds_host, user=username, passwd=password, db=db_name, connect_timeout=5)
-except pymysql.MySQLError as e:
-    logger.error("ERROR: Unexpected error: Could not connect to MySQL instance.")
-    logger.error(e)
-    sys.exit()
+username = 'user'
+password = 'cs411project'
+dbname = 'Complaints'
+client = MongoClient("mongodb+srv://" + username + ":" + password + "@cluster0.2xbcj.mongodb.net/" + dbname + "?retryWrites=true&w=majority")
+db = client.Complaints
     
-# logger.info("SUCCESS: Connection to RDS MySQL instance succeeded")
+    # we need to update the mongo based on the above here
+    # need to update the number of each type of complaint for the given address
+    # one entry per address in the table and you just add on the given complaints to the tuple as well as update the count for each type of complaint 
 def handler(event, context):
+#     var updateOutput = db.updateMany({$or: [{country: "Mexico"}, {release_year: {$gt: 2008}}]},
+#                                         {$set: {country: "Australia"}});
+# db.Movies.find({country:"Australia"},{_id:0, movie_name: 1, release_year:1})
+    
+    with db.cursor() as cur:
+        cur.execute("db.insert({'blah':'b', 'eshan':'gay'})")
+        conn.commit()
+    conn.commit()
+
     maskFlag = 0
     socialDistancingFlag = 0
     sickFlag = 0
     dirtyFlag = 0
     
-    maskWords = ['no mask', 'lost mask', 'on chin', 'nose', '', 'covering', 'not wearing', "weren't wearing", "wasn't wearing", "isn't wearing", ""]
-    socialDistancing = ['too many people', 'no social distancing', 'crowded']
-    sick = ['cough', 'coughing', 'sick', 'ill', 'sneeze', 'covid', ]
-    dirty = ['dirty', 'nasty', 'gross', 'not clean', 'rancid', 'unsanitary', 'unhygenic', 'health concerns', 'smells bad', 'not hygenic', 'bad hygenie', 'concern for health']
+    maskWords = ['not wearing', 'covering', 'wearing', 'not wearing']
+    socialDistancing = ['too many people', 'no social distancing']
+    sick = ['cough', 'coughing', 'sick', 'ill']
+    dirty = ['dirty', 'nasty', 'gross', 'not clean', '']
     
-    words = event['Complaints'].lower()
+    words = event['Complaints']
     for word in maskWords:
         if word in words:
             maskFlag = 1
@@ -41,13 +41,14 @@ def handler(event, context):
         if word in words:
             socialDistancingFlag = 1
             break
-    for word in sick:
+    for word in sickFlag:
         if word in words:
             sickFlag = 1
             break
-    for word in dirty:
+    for word in dirtyFlag:
         if word in words:
             dirtyFlag = 1
             break
+    
             
 
