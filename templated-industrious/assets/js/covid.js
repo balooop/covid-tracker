@@ -54,17 +54,24 @@ function processForm() {
 		return;
 	}
 	// CHANGE
-	var lambda = new AWS.Lambda({ region: 'us-east-1', apiVersion: '2015-03-31' });
-	var params = {
-		// 
-		FunctionName: 'arn:aws:lambda:us-east-1:834423887668:function:submit',
-		InvocationType: 'RequestResponse',
-		Payload: JSON.stringify({ "address": document.getElementById("searchTextField0").value, "NetID": document.getElementById("netid").value.toLowerCase().trim(), "Delete": window.delOrNot })
-	};
-	lambda.invoke(params, function (err, data) {
-		if (err) console.log("err,err.stack");
-		else console.log("data");
-	});
+	// if (document.getElementById("posForm").style.display == "block" && document.getElementById("searchTextField0").value != "") {
+		var lambda = new AWS.Lambda({ region: 'us-east-1', apiVersion: '2015-03-31' });
+		var params = {
+			// 
+			FunctionName: 'arn:aws:lambda:us-east-1:834423887668:function:submit',
+			InvocationType: 'RequestResponse',
+			Payload: JSON.stringify({ "address": document.getElementById("searchTextField0").value, "NetID": document.getElementById("netid").value.toLowerCase().trim(), "Delete": window.delOrNot })
+		};
+		lambda.invoke(params, function (err, data) {
+			if (err) console.log(err);
+			else console.log(data);
+		});
+	// }
+	// else if (document.getElementById("posForm").style.display == "block"){
+	// 	alert("Please input an address");
+	// 	return;
+	// }
+	customerComplaints();
 	finishSubmission();
 };
 
@@ -79,6 +86,30 @@ function searchCasesByAddr() {
 		InvocationType: 'RequestResponse',
 		Payload: JSON.stringify({ "address": document.getElementById("searchTextField2").value })
 	};
+	var numCases = 0;
+	lambda.invoke(params, function (err, data) {
+		if (err) console.log(err);
+		else console.log("success!");
+		console.log(data);
+		numCases = data.Payload;
+		displayCasesforAddress(document.getElementById("searchTextField2").value, numCases);
+	});
+};
+
+function customerComplaints() {
+	if (document.getElementById("reportForm").style.display == "none") return;
+	if (document.getElementById("businessReport").value == false) {
+		alert("Please input a reason");
+		return;
+	}
+	var lambda = new AWS.Lambda({ region: 'us-east-1', apiVersion: '2015-03-31' });
+	var params = {
+		FunctionName: 'arn:aws:lambda:us-east-1:834423887668:function:searchCases',
+		InvocationType: 'RequestResponse',
+		Payload: JSON.stringify({ "Complaints": document.getElementById("businessReport").value })
+	};
+
+	// add actual code below
 	var numCases = 0;
 	lambda.invoke(params, function (err, data) {
 		if (err) console.log("err,err.stack");
@@ -219,11 +250,11 @@ function eshanSecondTest() {
 	};
 	var x = document.getElementById("myChart");
 	var y = document.getElementById("noDataText");
-	if (myConfig.series.length > 0){
+	if (myConfig.series.length > 0) {
 		x.style.display = "block";
 		y.style.display = "none";
 	}
-	else{
+	else {
 		x.style.display = "none";
 		y.style.display = "block";
 	}

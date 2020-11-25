@@ -41,7 +41,7 @@ def handler(event, context):
         if word in words:
             socialDistancingFlag = 1
             break
-    for word in sickFlag:
+    for word in sick:
         if word in words:
             sickFlag = 1
             break
