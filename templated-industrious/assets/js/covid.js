@@ -67,12 +67,13 @@ function processForm() {
 			else console.log(data);
 		});
 	}
-	else if (document.getElementById("posForm").style.display == "block"){
+	else if (document.getElementById("posForm").style.display == "block") {
 		alert("Please input an address");
 		return;
 	}
-	customerComplaints();
+	// customerComplaints();
 	finishSubmission();
+	updateChartTest();
 };
 
 function searchCasesByAddr() {
@@ -97,7 +98,6 @@ function searchCasesByAddr() {
 };
 
 function customerComplaints() {
-	alert("in");
 	if (document.getElementById("reportForm").style.display == "none") return;
 	if (document.getElementById("businessReport").value == false) {
 		alert("Please input a reason");
@@ -120,6 +120,35 @@ function customerComplaints() {
 		// displayCasesforAddress(document.getElementById("searchTextField2").value, numCases);
 	});
 };
+
+function updateChartTest() {
+	alert("in");
+	// if (document.getElementById("reportForm").style.display == "none") return;
+	// if (document.getElementById("businessReport").value == false) {
+	// 	alert("Please input a reason");
+	// 	return;
+	// }
+	var lambda = new AWS.Lambda({ region: 'us-east-1', apiVersion: '2015-03-31' });
+	var params = {
+		FunctionName: 'arn:aws:lambda:us-east-1:834423887668:function:customerIsMad',
+		InvocationType: 'RequestResponse'
+		// Payload: JSON.stringify({ })
+	};
+
+	// add actual code below
+	var jsonOutput;
+	lambda.invoke(params, function (err, data) {
+		console.log(data.Payload);
+		if (err) console.log("err,err.stack");
+		else console.log("success!");
+		jsonOutput = data.Payload;
+		jsonOutput = data.Payload.replace(/\\/g, "");
+		jsonOutput = JSON.parse(jsonOutput);
+		console.log(jsonOutput);
+		eshanSecondTest(jsonOutput);
+	});
+};
+
 
 function finishSubmission() {
 	var x = document.getElementById("thankYou");
@@ -156,124 +185,14 @@ function searchAgain() {
 	x.style.display = "none";
 }
 
-function eshanSecondTest() {
-	ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
-	var myConfig = {
-		"type": "treemap",
-		"options": {
-			"split-type": "balanced",
-			"color-type": "palette",
-			"palette": ["#1ab7ea", "#ff5700", "#cd201f", "#25D366", "#FFFC00", "#3aaf85", "#f1c40f", "#17968e",
-				"#f7b362", "#F58F84", "#5B3256", "#317589", "#6B9362"]
-		},
-		"plotarea": {
-			"margin": "0 0 35 0"
-		},
-		"series": [{
-			"text": "North America - ",
-			"children": [{
-				"text": "United States",
-				"children": [{
-					"text": "Texas",
-					"value": 90
-				}]
-			},
-			{
-				"text": "Canada",
-				"value": 113
-			},
-			{
-				"text": "Mexico",
-				"value": 78
-			}
-			]
-		},
-		{
-			"text": "Europe",
-			"children": [{
-				"text": "France",
-				"value": 42
-			},
-			{
-				"text": "Spain",
-				"value": 28
-			}
-			]
-		},
-		{
-			"text": "Africa",
-			"children": [{
-				"text": "Egypt",
-				"value": 22
-			},
-			{
-				"text": "Congo",
-				"value": 38
-			}
-			]
-		},
-		{
-			"text": "Asia",
-			"children": [{
-				"text": "India",
-				"value": 92
-			},
-			{
-				"text": "China",
-				"value": 68
-			}
-			]
-		},
-		{
-			"text": "South America",
-			"children": [{
-				"text": "Brazil",
-				"value": 42
-			},
-			{
-				"text": "Argentina",
-				"value": 28
-			}
-			]
-		},
-		{
-			"text": "Australia (continent)",
-			"children": [{
-				"text": "Australia (country)",
-				"value": 121
-			},
-			{
-				"text": "New Zealand",
-				"cases": 5,
-				"reports": 10,
-				"value": (5+10)/2
-			}
-			]
-		}
-		]
-	};
-	var x = document.getElementById("myChart");
-	var y = document.getElementById("noDataText");
-	if (myConfig.series.length > 0) {
-		x.style.display = "block";
-		y.style.display = "none";
-	}
-	else {
-		x.style.display = "none";
-		y.style.display = "block";
-	}
-
+function eshanSecondTest(jsonOutput) {
+	// alert(typeof jsonOutput);
+	console.log(jsonOutput.series);
+	alert("hlllo")
 	zingchart.render({
 		id: 'myChart',
-		data: myConfig,
+		data: jsonOutput,
 		height: '100%',
 		width: '100%'
 	});
-
-	//   document.getElementById('treemap-layout').addEventListener('change', function(e) {
-	// 	myConfig.options['split-type'] = e.srcElement.value;
-	// 	zingchart.exec('myChart', 'setdata', {
-	// 	  data: myConfig
-	// 	});
-	//   })
 }
