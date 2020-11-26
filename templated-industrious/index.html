@@ -58,7 +58,8 @@
 				<div class="container" id="posForm" style="display: none;">
 					<script>
 						function initialize() {
-							for (var i = 0; i < 2; i++) {
+							window.addrNum = 0;
+							for (var i = 0; i < 11; i++) {
 								var input = document.getElementById('searchTextField' + i);
 								var autocomplete = new google.maps.places.Autocomplete(input);
 								var place = autocomplete.setFields(["formatted_address"]);
@@ -69,36 +70,123 @@
 								// 	// document.getElementById('cityLat').value = place.geometry.location.lat();
 								// 	// document.getElementById('cityLng').value = place.geometry.location.lng();
 								// });
-								if (i == 0){
+								if (i == 0) {
 									google.maps.event.addListener(autocomplete, 'place_changed', function () {
-									var place = this.getPlace().formatted_address;
-									console.log(place);
-									console.log(this);
-									document.getElementById('searchTextField' + 0).value = place;
-								});
+										var place = this.getPlace().formatted_address;
+										console.log(place);
+										console.log(this);
+										document.getElementById('searchTextField' + 0).value = place;
+									});
 								}
-								if (i == 1){
+								if (i == 1) {
 									google.maps.event.addListener(autocomplete, 'place_changed', function () {
-									var place = this.getPlace().formatted_address;
-									console.log(place);
-									console.log(this);
-									document.getElementById('searchTextField' + 1).value = place;
-								});
+										var place = this.getPlace().formatted_address;
+										console.log(place);
+										console.log(this);
+										document.getElementById('searchTextField' + 1).value = place;
+									});
 								}
 
 							}
 						}
 						google.maps.event.addDomListener(window, 'load', initialize);
 					</script>
-					<div class="row">
+					<b>
+						<h3>Where all have you been in the past 48 hours?</h4>
+					</b>
+					<div class="row" id="field0Div">
 						<div class="col-25">
-							<label for="searchTextField0">Where all have you been in the past 48 hours?</label>
+							<label for="searchTextField0">Location 1</label>
 						</div>
 						<div class="col-75">
 							<input id="searchTextField0" type="text" size="50" placeholder="Enter a location"
 								autocomplete="on" runat="server" />
 						</div>
 					</div>
+					<div class="row" id="field1Div" style="display: none;">
+						<div class="col-25">
+							<label for="searchTextField1">Location 2</label>
+						</div>
+						<div class="col-75">
+							<input id="searchTextField1" type="text" size="50" placeholder="Enter a location"
+								autocomplete="on" runat="server" />
+						</div>
+					</div>
+					<div class="row" id="field2Div" style="display: none;">
+						<div class="col-25">
+							<label for="searchTextField2">Location 3</label>
+						</div>
+						<div class="col-75">
+							<input id="searchTextField2" type="text" size="50" placeholder="Enter a location"
+								autocomplete="on" runat="server" />
+						</div>
+					</div>
+					<div class="row" id="field3Div" style="display: none;">
+						<div class="col-25">
+							<label for="searchTextField3">Location 4</label>
+						</div>
+						<div class="col-75">
+							<input id="searchTextField3" type="text" size="50" placeholder="Enter a location"
+								autocomplete="on" runat="server" />
+						</div>
+					</div>
+					<div class="row" id="field4Div" style="display: none;">
+						<div class="col-25">
+							<label for="searchTextField4">Location 5</label>
+						</div>
+						<div class="col-75">
+							<input id="searchTextField4" type="text" size="50" placeholder="Enter a location"
+								autocomplete="on" runat="server" />
+						</div>
+					</div>
+					<div class="row" id="field5Div" style="display: none;">
+						<div class="col-25">
+							<label for="searchTextField5">Location 6</label>
+						</div>
+						<div class="col-75">
+							<input id="searchTextField5" type="text" size="50" placeholder="Enter a location"
+								autocomplete="on" runat="server" />
+						</div>
+					</div>
+					<div class="row" id="field6Div" style="display: none;">
+						<div class="col-25">
+							<label for="searchTextField6">Location 7</label>
+						</div>
+						<div class="col-75">
+							<input id="searchTextField6" type="text" size="50" placeholder="Enter a location"
+								autocomplete="on" runat="server" />
+						</div>
+					</div>
+					<div class="row" id="field7Div" style="display: none;">
+						<div class="col-25">
+							<label for="searchTextField7">Location 8</label>
+						</div>
+						<div class="col-75">
+							<input id="searchTextField7" type="text" size="50" placeholder="Enter a location"
+								autocomplete="on" runat="server" />
+						</div>
+					</div>
+					<div class="row" id="field8Div" style="display: none;">
+						<div class="col-25">
+							<label for="searchTextField8">Location 9</label>
+						</div>
+						<div class="col-75">
+							<input id="searchTextField8" type="text" size="50" placeholder="Enter a location"
+								autocomplete="on" runat="server" />
+						</div>
+					</div>
+					<div class="row" id="field9Div" style="display: none;">
+						<div class="col-25">
+							<label for="searchTextField9">Location 10</label>
+						</div>
+						<div class="col-75">
+							<input id="searchTextField9" type="text" size="50" placeholder="Enter a location"
+								autocomplete="on" runat="server" />
+						</div>
+					</div>
+					<br>
+					<a class="button" onclick="addSearchField()" style="margin: auto;">Add new location</a> &nbsp;&nbsp; 
+					<a class="button" onclick="removeSearchField()" style="margin: auto;">Remove last location</a>
 				</div>
 			</form>
 			<form action="/action_page.php">
@@ -128,17 +216,17 @@
 				<div class="container" id="reportForm" style="display: none;">
 					<div class="row">
 						<div class="col-small">
-							<label for="searchTextField1">Business to Report</label>
+							<label for="searchTextField10">Business to Report</label>
 						</div>
 						<div class="col-75">
-							<input id="searchTextField1" type="text" size="50" placeholder="Enter a location"
+							<input id="searchTextField10" type="text" size="50" placeholder="Enter a location"
 								autocomplete="on" runat="server" />
 						</div>
 						<div class="col-small">
 							<label for="businessReport">Reason for Report</label>
 						</div>
 						<div class="col-75">
-							<input id="businessReport" type="text" size="50" placeholder="Enter a reason"/>
+							<input id="businessReport" type="text" size="50" placeholder="Enter a reason" />
 						</div>
 					</div>
 				</div>
@@ -189,7 +277,8 @@
 							<div class="image">
 								<img src="images/pic01.jpg" alt="" />
 							</div>
-							<p class="credit">- <strong>Eshan Dhar</strong> <span>UI/UX Designer - Grape Inc. (Former COVID-19 Patient)</span></p>
+							<p class="credit">- <strong>Eshan Dhar</strong> <span>UI/UX Designer - Grape Inc. (Former
+									COVID-19 Patient)</span></p>
 						</div>
 						<a href="https://www.linkedin.com/in/eshandhar/"><i class="icon fa-linkedin"></i></a>
 						<a href="https://github.com/Eshand"><i class="icon fa-github"></i></a>
@@ -208,7 +297,8 @@
 							<div class="image">
 								<img src="images/pic02.jpg" alt="" />
 							</div>
-							<p class="credit">- <strong>Pavan Baloo</strong> <span>Ex-AWS Employee - Grape Inc. (Former COVID-19 Patient)</span>
+							<p class="credit">- <strong>Pavan Baloo</strong> <span>Ex-AWS Employee - Grape Inc. (Former
+									COVID-19 Patient)</span>
 							</p>
 						</div>
 						<a href="https://www.linkedin.com/in/pavanbaloo/"><i class="icon fa-linkedin"></i></a>

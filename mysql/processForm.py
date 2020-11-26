@@ -5,11 +5,10 @@ from datetime import datetime
 import uuid
 import re
 #rds settings
-# CHANGE RDS_HOST AND DB_NAME
 rds_host  = 'covid-tracker.c7ic0rieoltc.us-east-1.rds.amazonaws.com'
 username = 'admin'
 password = 'Cov1dgrap3'
-db_name = 'covid-tracker'
+db_name = 'covid-locations-tracker'
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -24,8 +23,12 @@ except pymysql.MySQLError as e:
 def handler(event, context):
     if event['Delete'] == True:
         removeCase(str(event['NetID']))
-    else: 
-        addCase(str(event['address']), str(event['NetID']))
+    else:
+        x = range(0,10)
+        for i in x:
+            addr = "address" + str(i)
+            if (str(event[addr]) != ""):
+                addCase(str(event[addr]), str(event['NetID']))
 
 
 def addCase(addresses_visited, netid):
@@ -42,8 +45,13 @@ def addCase(addresses_visited, netid):
 
 
         # inserts case into Cases
-        cur.execute('INSERT into Cases (address_visited, netid, timestamp, block_id) Values ("'+addresses_visited+'", "'+netid+'", CURRENT_TIMESTAMP, "'+block_id+'")')
-        conn.commit()
+        try:
+            cur.execute('INSERT into Cases (address_visited, netid, timestamp, block_id) Values ("'+addresses_visited+'", "'+netid+'", CURRENT_TIMESTAMP, "'+block_id+'")')
+            conn.commit()
+        except pymysql.IntegrityError as e:
+            logger.error("ERROR: Duplicate Value")
+            logger.error(e)
+            conn.commit()
         
     cur.close()
     return

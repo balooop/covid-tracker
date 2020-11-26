@@ -52,10 +52,10 @@
 								that it resides in.</p>
 							<div class="row">
 								<div class="col-25">
-									<label for="searchTextField2">Address to search</label>
+									<label for="searchTextField11">Address to search</label>
 								</div>
 								<div class="col-75">
-									<input id="searchTextField2" type="text" size="50" placeholder="Enter a location"
+									<input id="searchTextField11" type="text" size="50" placeholder="Enter a location"
 										autocomplete="on" runat="server" />
 								</div>
 							</div>
@@ -106,7 +106,7 @@
 		<script>
 			function initialize() {
 				updateChartTest();
-				for (var i = 2; i < 3; i++) {
+				for (var i = 11; i < 12; i++) {
 					var input = document.getElementById('searchTextField' + i);
 					var autocomplete = new google.maps.places.Autocomplete(input);
 					var place = autocomplete.setFields(["formatted_address"]);
@@ -114,7 +114,7 @@
 						var place = this.getPlace().formatted_address;
 						console.log(place);
 						console.log(this);
-						document.getElementById('searchTextField' + 2).value = place;
+						document.getElementById('searchTextField' + 11).value = place;
 					});
 				}
 			}

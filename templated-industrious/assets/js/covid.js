@@ -63,11 +63,22 @@ function processForm() {
 		// var addr;
 		// if (document.getElementById("searchTextField0").value == "") addr = "NULL";
 		// else addr = document.getElementById("searchTextField0").value;
+		console.log(JSON.stringify({ "address0": document.getElementById("searchTextField0").value, "address1": document.getElementById("searchTextField1").value,
+		"address2": document.getElementById("searchTextField2").value,"address3": document.getElementById("searchTextField3").value,
+		"address4": document.getElementById("searchTextField4").value,"address5": document.getElementById("searchTextField5").value,
+		"address6": document.getElementById("searchTextField6").value,"address7": document.getElementById("searchTextField7").value,
+		"address8": document.getElementById("searchTextField8").value,"address9": document.getElementById("searchTextField9").value,
+		"NetID": document.getElementById("netid").value.toLowerCase().trim(), "Delete": window.delOrNot }));
 		var params = {
 			// 
 			FunctionName: 'arn:aws:lambda:us-east-1:834423887668:function:submit',
 			InvocationType: 'RequestResponse',
-			Payload: JSON.stringify({ "address": document.getElementById("searchTextField0").value, "NetID": document.getElementById("netid").value.toLowerCase().trim(), "Delete": window.delOrNot })
+			Payload: JSON.stringify({ "address0": document.getElementById("searchTextField0").value, "address1": document.getElementById("searchTextField1").value,
+			"address2": document.getElementById("searchTextField2").value,"address3": document.getElementById("searchTextField3").value,
+			"address4": document.getElementById("searchTextField4").value,"address5": document.getElementById("searchTextField5").value,
+			"address6": document.getElementById("searchTextField6").value,"address7": document.getElementById("searchTextField7").value,
+			"address8": document.getElementById("searchTextField8").value,"address9": document.getElementById("searchTextField9").value,
+			"NetID": document.getElementById("netid").value.toLowerCase().trim(), "Delete": window.delOrNot })
 		};
 		lambda.invoke(params, function (err, data) {
 			if (err) console.log(err);
@@ -80,7 +91,7 @@ function processForm() {
 };
 
 function searchCasesByAddr() {
-	if (document.getElementById("searchTextField2").value == false) {
+	if (document.getElementById("searchTextField11").value == false) {
 		alert("Please input your address");
 		return;
 	}
@@ -88,7 +99,7 @@ function searchCasesByAddr() {
 	var params = {
 		FunctionName: 'arn:aws:lambda:us-east-1:834423887668:function:searchCases',
 		InvocationType: 'RequestResponse',
-		Payload: JSON.stringify({ "address": document.getElementById("searchTextField2").value })
+		Payload: JSON.stringify({ "address": document.getElementById("searchTextField11").value })
 	};
 	var numCases = 0;
 	lambda.invoke(params, function (err, data) {
@@ -96,7 +107,7 @@ function searchCasesByAddr() {
 		else console.log("success!");
 		console.log(data);
 		numCases = data.Payload;
-		displayCasesforAddress(document.getElementById("searchTextField2").value, numCases);
+		displayCasesforAddress(document.getElementById("searchTextField11").value, numCases);
 	});
 };
 
@@ -120,7 +131,7 @@ function customerComplaints() {
 		else console.log("success!");
 		console.log(data);
 		// numCases = data.Payload;
-		// displayCasesforAddress(document.getElementById("searchTextField2").value, numCases);
+		// displayCasesforAddress(document.getElementById("searchTextField11").value, numCases);
 	});
 };
 
@@ -192,10 +203,36 @@ function eshanSecondTest(jsonOutput) {
 	// alert(typeof jsonOutput);
 	console.log(jsonOutput.series);
 	// alert("hlllo")
+
+	var x = document.getElementById("myChart");
+	var y = document.getElementById("noDataText");
 	zingchart.render({
 		id: 'myChart',
 		data: jsonOutput,
 		height: '100%',
 		width: '100%'
 	});
+	if (jsonOutput.series.length > 0) {
+		x.style.display = "block";
+		y.style.display = "none";
+	}
+	else {
+		x.style.display = "none";
+		y.style.display = "block";
+	}
+
+}
+
+function addSearchField(){
+	if (window.addrNum == 9) return;
+	window.addrNum++;
+	var x = document.getElementById("field" + window.addrNum + "Div");
+	x.style.display = "block";
+}
+
+function removeSearchField(){
+	if (window.addrNum == 0) return;
+	var x = document.getElementById("field" + window.addrNum + "Div");
+	x.style.display = "none";
+	window.addrNum--;
 }
