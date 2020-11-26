@@ -1,54 +1,74 @@
-import sys
-import logging
-from pymongo import MongoClient
-import dns
+import pymongo
 
-username = 'user'
-password = 'cs411project'
-dbname = 'Complaints'
-client = MongoClient("mongodb+srv://" + username + ":" + password + "@cluster0.2xbcj.mongodb.net/" + dbname + "?retryWrites=true&w=majority")
-db = client.Complaints
+
+client = pymongo.MongoClient("mongodb+srv://user:cs411project@cluster0.2xbcj.mongodb.net/?retryWrites=true&w=majority")
+db = client[ "Complaints" ]
+col = db[ "Complaints" ] 
+
+
     
-    # we need to update the mongo based on the above here
-    # need to update the number of each type of complaint for the given address
-    # one entry per address in the table and you just add on the given complaints to the tuple as well as update the count for each type of complaint 
 def handler(event, context):
-#     var updateOutput = db.updateMany({$or: [{country: "Mexico"}, {release_year: {$gt: 2008}}]},
-#                                         {$set: {country: "Australia"}});
-# db.Movies.find({country:"Australia"},{_id:0, movie_name: 1, release_year:1})
-    
-    with db.cursor() as cur:
-        cur.execute("db.insert({'blah':'b', 'eshan':'gay'})")
-        conn.commit()
-    conn.commit()
+  
+  maskFlag = 0
+  socialDistancingFlag = 0
+  sickFlag = 0
+  dirtyFlag = 0
+  
+  maskWords = ['not wearing', 'covering', 'wearing', 'not wearing', 'no mask']
+  socialDistancing = ['too many people', 'no social distancing']
+  sick = ['cough', 'coughing', 'sick', 'ill']
+  dirty = ['dirty', 'nasty', 'gross', 'not clean']
+  
+  cmpl = event['Complaints']
+  addr = event['Address']
 
-    maskFlag = 0
-    socialDistancingFlag = 0
-    sickFlag = 0
-    dirtyFlag = 0
+  for word in maskWords:
+      if word in cmpl:
+          maskFlag = 1
+          break
+  for word in socialDistancing:
+      if word in cmpl:
+          socialDistancingFlag = 1
+          break
+  for word in sick:
+      if word in cmpl:
+          sickFlag = 1
+          break
+  for word in dirty:
+      if word in cmpl:
+          dirtyFlag = 1
+          break
     
-    maskWords = ['not wearing', 'covering', 'wearing', 'not wearing']
-    socialDistancing = ['too many people', 'no social distancing']
-    sick = ['cough', 'coughing', 'sick', 'ill']
-    dirty = ['dirty', 'nasty', 'gross', 'not clean', '']
-    
-    words = event['Complaints']
-    for word in maskWords:
-        if word in words:
-            maskFlag = 1
-            break
-    for word in socialDistancing:
-        if word in words:
-            socialDistancingFlag = 1
-            break
-    for word in sickFlag:
-        if word in words:
-            sickFlag = 1
-            break
-    for word in dirtyFlag:
-        if word in words:
-            dirtyFlag = 1
-            break
-    
-            
+  personDocument = {
+    "Address": addr,
+    "violations": [cmpl],
+    "mask": maskFlag,
+    "socialDistancing": socialDistancingFlag,
+    "sick": sickFlag,
+    "dirty": dirtyFlag
+  }
+  if(col.find({'Address': addr}).count() > 0):
+    myquery = { "Address": addr }
+    curViol = col.find({'Address': addr})
+    violList = [cmpl]
+    numMask = 0
+    numSocialDist = 0
+    numSick = 0
+    numDirty = 0
+    for x in curViol:
+      numMask = x["mask"]
+      numSocialDist = x["socialDistancing"]
+      numSick = x["sick"]
+      numDirty = x["dirty"]
+      if(isinstance(x["violations"], str)):
+        violList.append(x["violations"])
+      else:
+        for violation in x["violations"]:
+          violList.append(violation)
+    newvalues = { "$set": { "violations": violList, "mask": numMask + maskFlag, "socialDistancing": numSocialDist + socialDistancingFlag, "sick": numSick + sickFlag, "dirty": numDirty + dirtyFlag} }
+    col.update_one(myquery, newvalues)
+  else:
+    col.insert_one(personDocument)
 
+  client.close()
+  return

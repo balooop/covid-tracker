@@ -86,6 +86,79 @@
 										document.getElementById('searchTextField' + 1).value = place;
 									});
 								}
+								if (i == 2) {
+									google.maps.event.addListener(autocomplete, 'place_changed', function () {
+										var place = this.getPlace().formatted_address;
+										console.log(place);
+										console.log(this);
+										document.getElementById('searchTextField' + 2).value = place;
+									});
+								}
+								if (i == 3) {
+									google.maps.event.addListener(autocomplete, 'place_changed', function () {
+										var place = this.getPlace().formatted_address;
+										console.log(place);
+										console.log(this);
+										document.getElementById('searchTextField' + 3).value = place;
+									});
+								}
+								if (i == 4) {
+									google.maps.event.addListener(autocomplete, 'place_changed', function () {
+										var place = this.getPlace().formatted_address;
+										console.log(place);
+										console.log(this);
+										document.getElementById('searchTextField' + 4).value = place;
+									});
+								}
+								if (i == 5) {
+									google.maps.event.addListener(autocomplete, 'place_changed', function () {
+										var place = this.getPlace().formatted_address;
+										console.log(place);
+										console.log(this);
+										document.getElementById('searchTextField' + 5).value = place;
+									});
+								}
+								if (i == 6) {
+									google.maps.event.addListener(autocomplete, 'place_changed', function () {
+										var place = this.getPlace().formatted_address;
+										console.log(place);
+										console.log(this);
+										document.getElementById('searchTextField' + 6).value = place;
+									});
+								}
+								if (i == 7) {
+									google.maps.event.addListener(autocomplete, 'place_changed', function () {
+										var place = this.getPlace().formatted_address;
+										console.log(place);
+										console.log(this);
+										document.getElementById('searchTextField' + 7).value = place;
+									});
+								}
+								if (i == 8) {
+									google.maps.event.addListener(autocomplete, 'place_changed', function () {
+										var place = this.getPlace().formatted_address;
+										console.log(place);
+										console.log(this);
+										document.getElementById('searchTextField' + 8).value = place;
+									});
+								}
+								if (i == 9) {
+									google.maps.event.addListener(autocomplete, 'place_changed', function () {
+										var place = this.getPlace().formatted_address;
+										console.log(place);
+										console.log(this);
+										document.getElementById('searchTextField' + 9).value = place;
+									});
+								}
+								if (i == 10) {
+									google.maps.event.addListener(autocomplete, 'place_changed', function () {
+										var place = this.getPlace().formatted_address;
+										console.log(place);
+										console.log(this);
+										document.getElementById('searchTextField' + 10).value = place;
+									});
+								}
+
 
 							}
 						}
@@ -205,7 +278,7 @@
 
 
 			<form action="/action_page.php">
-				<h2>Would you like to report any businesses not following COVID-19 guidelines?</h2>
+				<h2>Would you like to report any business not following COVID-19 guidelines?</h2>
 				<div class="cd-switch switch">
 					<input type="radio" name="choice" id="yes" onclick="report();">
 					<label for="yes">Yes</label>

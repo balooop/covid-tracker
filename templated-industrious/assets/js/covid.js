@@ -85,7 +85,7 @@ function processForm() {
 			else console.log(data);
 		});
 	}
-	// customerComplaints();
+	if (customerComplaints() == -1) return;
 	finishSubmission();
 	updateChartTest();
 };
@@ -113,15 +113,19 @@ function searchCasesByAddr() {
 
 function customerComplaints() {
 	if (document.getElementById("reportForm").style.display == "none") return;
+	if (document.getElementById("searchTextField10").value == false) {
+		alert("Please input an address");
+		return -1;
+	}
 	if (document.getElementById("businessReport").value == false) {
 		alert("Please input a reason");
-		return;
+		return -1;
 	}
 	var lambda = new AWS.Lambda({ region: 'us-east-1', apiVersion: '2015-03-31' });
 	var params = {
 		FunctionName: 'arn:aws:lambda:us-east-1:834423887668:function:customerComplaints',
 		InvocationType: 'RequestResponse',
-		Payload: JSON.stringify({ "Complaints": document.getElementById("businessReport").value })
+		Payload: JSON.stringify({ "Complaints": document.getElementById("businessReport").value, "Address": document.getElementById("searchTextField10").value })
 	};
 
 	// add actual code below
@@ -206,20 +210,34 @@ function eshanSecondTest(jsonOutput) {
 
 	var x = document.getElementById("myChart");
 	var y = document.getElementById("noDataText");
+
+    let chartConfig = {
+      type: 'treemap',
+      options: {
+        aspectType: 'palette',
+        maxChildren: [4, 4, 4],
+        tooltipBox: {
+          text: '%text'
+        }
+      },
+      series: jsonOutput.series
+    };
 	zingchart.render({
 		id: 'myChart',
-		data: jsonOutput,
+		data: chartConfig,
+		hideprogresslogo: true,
+		output: 'canvas',
 		height: '100%',
-		width: '100%'
-	});
-	if (jsonOutput.series.length > 0) {
+		width: '100%',
+	  });
+	// if (jsonOutput.series.length > 0) {
 		x.style.display = "block";
 		y.style.display = "none";
-	}
-	else {
-		x.style.display = "none";
-		y.style.display = "block";
-	}
+	// }
+	// else {
+	// 	x.style.display = "none";
+	// 	y.style.display = "block";
+	// }
 
 }
 
@@ -234,5 +252,9 @@ function removeSearchField(){
 	if (window.addrNum == 0) return;
 	var x = document.getElementById("field" + window.addrNum + "Div");
 	x.style.display = "none";
+	document.getElementById("searchTextField2").setAttribute('value', '');
 	window.addrNum--;
 }
+
+
+
