@@ -54,8 +54,15 @@ function processForm() {
 		return;
 	}
 	// CHANGE
-	if (document.getElementById("posForm").style.display == "block" && document.getElementById("searchTextField0").value != "") {
+	if (document.getElementById("posForm").style.display == "block" && document.getElementById("searchTextField0").value == "") {
+		alert("Please input an address");
+		return;
+	}
+	else {
 		var lambda = new AWS.Lambda({ region: 'us-east-1', apiVersion: '2015-03-31' });
+		// var addr;
+		// if (document.getElementById("searchTextField0").value == "") addr = "NULL";
+		// else addr = document.getElementById("searchTextField0").value;
 		var params = {
 			// 
 			FunctionName: 'arn:aws:lambda:us-east-1:834423887668:function:submit',
@@ -66,10 +73,6 @@ function processForm() {
 			if (err) console.log(err);
 			else console.log(data);
 		});
-	}
-	else if (document.getElementById("posForm").style.display == "block") {
-		alert("Please input an address");
-		return;
 	}
 	// customerComplaints();
 	finishSubmission();
