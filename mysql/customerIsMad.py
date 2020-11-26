@@ -7,24 +7,16 @@ rds_host  = 'covid-tracker.c7ic0rieoltc.us-east-1.rds.amazonaws.com'
 username = 'admin'
 password = 'Cov1dgrap3'
 db_name = 'covid-locations-tracker'
+conn = pymysql.connect(rds_host, user=username, passwd=password, db=db_name, connect_timeout=5)
 
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
-try:
-    conn = pymysql.connect(rds_host, user=username, passwd=password, db=db_name, connect_timeout=5)
-except pymysql.MySQLError as e:
-    logger.error("ERROR: Unexpected error: Could not connect to MySQL instance.")
-    logger.error(e)
-    sys.exit()
-    
-logger.info("SUCCESS: Connection to RDS MySQL instance succeeded")
+# logger.info("SUCCESS: Connection to RDS MySQL instance succeeded")
 def handler(event, context):
     print("hi")
     dict = {}
-    sql = "SELECT COUNT(*) AS numCasesPerAddr, block_id, address_visited FROM Cases GROUP BY address_visited"
-    cursor = conn.cursor()
-    result_row = cursor.execute(sql)
-    query_result = cursor.fetchall()
+    cur = conn.cursor()
+    result_row = cur.execute("SELECT COUNT(*) AS numCasesPerAddr, block_id, address_visited FROM Cases GROUP BY address_visited")
+    query_result = cur.fetchall()
+    conn.commit()
     for row in query_result:
         numCases = row[0]
         blockId = row[1]
@@ -57,14 +49,16 @@ def handler(event, context):
     
     for key in dict:
         parent = {}
-        parent['text'] = key
+        sumChid = 0
         children = []
         for child in dict[key]:
             childy = {}
             childy['text'] = child[1]
             childy['value'] = child[0]
             children.append(childy)
+            sumChid += child[0]
         parent['children'] = children
+        parent['text'] = key + ' - ' + str(sumChid)
         series.append(parent)
     
     finalJson['series'] = series

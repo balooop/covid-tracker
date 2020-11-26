@@ -122,7 +122,7 @@ function customerComplaints() {
 };
 
 function updateChartTest() {
-	alert("in");
+	// alert("in");
 	// if (document.getElementById("reportForm").style.display == "none") return;
 	// if (document.getElementById("businessReport").value == false) {
 	// 	alert("Please input a reason");
@@ -188,7 +188,7 @@ function searchAgain() {
 function eshanSecondTest(jsonOutput) {
 	// alert(typeof jsonOutput);
 	console.log(jsonOutput.series);
-	alert("hlllo")
+	// alert("hlllo")
 	zingchart.render({
 		id: 'myChart',
 		data: jsonOutput,
