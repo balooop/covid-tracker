@@ -174,10 +174,6 @@ function finishSubmission() {
 
 	var x = document.getElementById("formInner");
 	x.style.display = "none";
-
-	// alert(document.getElementById("searchTextField0").value);
-	// alert(document.getElementById("searchTextField1").value);
-
 }
 
 function displayCasesforAddress(addr, count) {

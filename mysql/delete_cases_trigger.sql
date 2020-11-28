@@ -13,11 +13,11 @@ CREATE TRIGGER DeleteCase
         UPDATE Addresses
         SET num_cases = num_cases - 1
         WHERE _address = old.address_visited;
-        
+        # if num cases = 0 --> delete address row
         UPDATE Blocks
         SET num_cases_blk = num_cases_blk - 1
         WHERE block_id = @block;
-
+        # if num cases = 0 --> delete block row
     END;
     $$
 DELIMITER ; 
