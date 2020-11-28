@@ -106,8 +106,12 @@ function searchCasesByAddr() {
 		if (err) console.log(err);
 		else console.log("success!");
 		console.log(data);
-		numCases = data.Payload;
-		displayCasesforAddress(document.getElementById("searchTextField11").value, numCases);
+		resp = data.Payload;
+		resp = data.Payload.replace(/\\/g, "");
+		resp = JSON.parse(resp);
+		console.log(resp);
+		console.log(resp['numCases']);
+		displayCasesforAddress(document.getElementById("searchTextField11").value, resp["numCases"]);
 	});
 };
 
@@ -177,7 +181,6 @@ function finishSubmission() {
 }
 
 function displayCasesforAddress(addr, count) {
-
 	var x = document.getElementById("searchbyaddr");
 	x.style.display = "none";
 
