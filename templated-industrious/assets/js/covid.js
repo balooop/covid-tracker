@@ -18,6 +18,8 @@ function positive() {
 	x.style.display = "none";
 
 	window.delOrNot = false;
+	window.clearedFromIso = false;
+	window.isPositive = true;
 
 }
 
@@ -29,6 +31,8 @@ function negative() {
 	x.style.display = "block";
 
 	window.delOrNot = false;
+	window.clearedFromIso = false;
+	window.isPositive = false;
 }
 
 function report() {
@@ -50,6 +54,13 @@ function notcleared() {
 // called when 
 function processForm() {
 	// CHANGE
+	// alert(window.addrNum);
+	// for (var i = 0; i <= window.addrNum; i++){
+	// 	example = "autofill" + i ;
+	// 	alert(window.example);
+	// 	return;
+	// }
+
 	if (window.posClicked != true) {
 		alert("Please specify if you have recently tested positive!");
 		return;
@@ -58,7 +69,7 @@ function processForm() {
 		alert("Please input an address!");
 		return;
 	}
-	if (window.clearedFromIso != true && window.delOrNot == false) {
+	if (window.clearedFromIso != true && window.isPositive == false) {
 		alert("Please specify if you have recently cleared from isolation!");
 		return;
 	}
@@ -270,6 +281,9 @@ function searchAgain() {
 
 	var x = document.getElementById("casescard");
 	x.style.display = "none";
+
+	document.getElementById('searchTextField11').value = "";
+	$('html, body').animate({ scrollTop: 0 }, 'fast');
 }
 
 function eshanSecondTest(jsonOutput) {
@@ -329,7 +343,3 @@ function removeSearchField(){
 	document.getElementById('searchTextField' + window.addrNum).value = "";
 	window.addrNum--;
 }
-
-
-
-// font size on block quotes larger

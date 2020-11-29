@@ -73,10 +73,12 @@
 								// });
 								if (i == 0) {
 									google.maps.event.addListener(autocomplete, 'place_changed', function () {
+										// alert("hi");
 										var place = this.getPlace().formatted_address;
 										console.log(place);
 										console.log(this);
 										document.getElementById('searchTextField' + 0).value = place;
+										window.autofill0 = true;
 									});
 								}
 								if (i == 1) {
@@ -85,6 +87,7 @@
 										console.log(place);
 										console.log(this);
 										document.getElementById('searchTextField' + 1).value = place;
+										window.autofill1 = true;
 									});
 								}
 								if (i == 2) {
@@ -93,6 +96,7 @@
 										console.log(place);
 										console.log(this);
 										document.getElementById('searchTextField' + 2).value = place;
+										window.autofill2 = true;
 									});
 								}
 								if (i == 3) {
@@ -101,6 +105,7 @@
 										console.log(place);
 										console.log(this);
 										document.getElementById('searchTextField' + 3).value = place;
+										window.autofill3 = true;
 									});
 								}
 								if (i == 4) {
@@ -109,6 +114,7 @@
 										console.log(place);
 										console.log(this);
 										document.getElementById('searchTextField' + 4).value = place;
+										window.autofill4 = true;
 									});
 								}
 								if (i == 5) {
@@ -117,6 +123,7 @@
 										console.log(place);
 										console.log(this);
 										document.getElementById('searchTextField' + 5).value = place;
+										window.autofill5 = true;
 									});
 								}
 								if (i == 6) {
@@ -125,6 +132,7 @@
 										console.log(place);
 										console.log(this);
 										document.getElementById('searchTextField' + 6).value = place;
+										window.autofill6 = true;
 									});
 								}
 								if (i == 7) {
@@ -133,6 +141,7 @@
 										console.log(place);
 										console.log(this);
 										document.getElementById('searchTextField' + 7).value = place;
+										window.autofill7 = true;
 									});
 								}
 								if (i == 8) {
@@ -141,6 +150,7 @@
 										console.log(place);
 										console.log(this);
 										document.getElementById('searchTextField' + 8).value = place;
+										window.autofill8 = true;
 									});
 								}
 								if (i == 9) {
@@ -149,6 +159,7 @@
 										console.log(place);
 										console.log(this);
 										document.getElementById('searchTextField' + 9).value = place;
+										window.autofill9 = true;
 									});
 								}
 								if (i == 10) {
@@ -157,6 +168,7 @@
 										console.log(place);
 										console.log(this);
 										document.getElementById('searchTextField' + 10).value = place;
+										window.autofill10 = true;
 									});
 								}
 
@@ -174,7 +186,7 @@
 						</div>
 						<div class="col-75">
 							<input id="searchTextField0" type="text" size="50" placeholder="Enter a location"
-								autocomplete="on" runat="server" />
+								autocomplete="on" runat="server" onchange="window.autofill1 = false"/>
 						</div>
 					</div>
 					<div class="row">
@@ -183,7 +195,7 @@
 						</div>
 						<div class="col-75">
 							<input id="searchTextField1" type="text" size="50" placeholder="Enter a location"
-								autocomplete="on" runat="server" style="display: none;"/>
+								autocomplete="on" runat="server" style="display: none;" onchange="window.autofill2 = false"/>
 						</div>
 					</div>
 					<div class="row">
@@ -192,7 +204,7 @@
 						</div>
 						<div class="col-75">
 							<input id="searchTextField2" type="text" size="50" placeholder="Enter a location"
-								autocomplete="on" runat="server" style="display: none;"/>
+								autocomplete="on" runat="server" style="display: none;" onchange="window.autofill2 = false"/>
 						</div>
 					</div>
 					<div class="row">
@@ -201,7 +213,7 @@
 						</div>
 						<div class="col-75">
 							<input id="searchTextField3" type="text" size="50" placeholder="Enter a location"
-								autocomplete="on" runat="server" style="display: none;"/>
+								autocomplete="on" runat="server" style="display: none;" onchange="window.autofill3 = false"/>
 						</div>
 					</div>
 					<div class="row">
@@ -210,7 +222,7 @@
 						</div>
 						<div class="col-75">
 							<input id="searchTextField4" type="text" size="50" placeholder="Enter a location"
-								autocomplete="on" runat="server" style="display: none;"/>
+								autocomplete="on" runat="server" style="display: none;" onchange="window.autofill4 = false"/>
 						</div>
 					</div>
 					<div class="row">
@@ -219,7 +231,7 @@
 						</div>
 						<div class="col-75">
 							<input id="searchTextField5" type="text" size="50" placeholder="Enter a location"
-								autocomplete="on" runat="server" style="display: none;"/>
+								autocomplete="on" runat="server" style="display: none;" onchange="window.autofill5 = false"/>
 						</div>
 					</div>
 					<div class="row">
@@ -228,7 +240,7 @@
 						</div>
 						<div class="col-75">
 							<input id="searchTextField6" type="text" size="50" placeholder="Enter a location"
-								autocomplete="on" runat="server" style="display: none;"/>
+								autocomplete="on" runat="server" style="display: none;" onchange="window.autofill6 = false"/>
 						</div>
 					</div>
 					<div class="row">
@@ -237,7 +249,7 @@
 						</div>
 						<div class="col-75">
 							<input id="searchTextField7" type="text" size="50" placeholder="Enter a location"
-								autocomplete="on" runat="server" style="display: none;"/>
+								autocomplete="on" runat="server" style="display: none;" onchange="window.autofill7 = false"/>
 						</div>
 					</div>
 					<div class="row">
@@ -246,7 +258,7 @@
 						</div>
 						<div class="col-75">
 							<input id="searchTextField8" type="text" size="50" placeholder="Enter a location"
-								autocomplete="on" runat="server" style="display: none;"/>
+								autocomplete="on" runat="server" style="display: none;" onchange="window.autofill8 = false"/>
 						</div>
 					</div>
 					<div class="row">
@@ -255,7 +267,7 @@
 						</div>
 						<div class="col-75">
 							<input id="searchTextField9" type="text" size="50" placeholder="Enter a location"
-								autocomplete="on" runat="server" style="display: none;"/>
+								autocomplete="on" runat="server" style="display: none;" onchange="window.autofill9 = false"/>
 						</div>
 					</div>
 					<br>
@@ -294,7 +306,7 @@
 						</div>
 						<div class="col-75">
 							<input id="searchTextField10" type="text" size="50" placeholder="Enter a location"
-								autocomplete="on" runat="server" />
+								autocomplete="on" runat="server" onchange="window.autofill10 = false"/>
 						</div>
 						<div class="col-small">
 							<label for="businessReport">Reason for Report</label>
