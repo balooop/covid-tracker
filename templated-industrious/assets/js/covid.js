@@ -54,13 +54,6 @@ function notcleared() {
 // called when 
 function processForm() {
 	// CHANGE
-	// alert(window.addrNum);
-	// for (var i = 0; i <= window.addrNum; i++){
-	// 	example = "autofill" + i ;
-	// 	alert(window.example);
-	// 	return;
-	// }
-
 	if (window.posClicked != true) {
 		alert("Please specify if you have recently tested positive!");
 		return;
@@ -68,6 +61,12 @@ function processForm() {
 	if (document.getElementById("posForm").style.display == "block" && document.getElementById("searchTextField0").value == "") {
 		alert("Please input an address!");
 		return;
+	}
+	for (var i = 0; i <= window.addrNum; i++){
+		if (window.autofill[i] == false){
+			alert("Please make sure to select your address from the dropdown!");
+			return;
+		}
 	}
 	if (window.clearedFromIso != true && window.isPositive == false) {
 		alert("Please specify if you have recently cleared from isolation!");
