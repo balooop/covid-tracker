@@ -41,12 +41,15 @@ def addCase(addresses_visited, netid):
         firstHalf = addresses_visited.split(' ')[0]
         firstHalf = re.sub("[^0-9]", "", firstHalf)
         street_address = addresses_visited.split(',')[0].split(' ')
-        block_id = str((int(firstHalf)//100)*100) + ''.join(street_address[1:])
+        block_id = str((int(firstHalf)//100)*100) + ''.join(filter(lambda x: x.isalpha(), street_address[1:]))
+        processed_address = [street_address[0] + ' ' + ' '.join(filter(lambda x: x.isalpha(), street_address[1:]))] + addresses_visited.split(',')[1:]
+        processed_address = ','.join(processed_address)
+
 
 
         # inserts case into Cases
         try:
-            cur.execute('INSERT into Cases (address_visited, netid, timestamp, block_id) Values ("'+addresses_visited+'", "'+netid+'", CURRENT_TIMESTAMP, "'+block_id+'")')
+            cur.execute('INSERT into Cases (address_visited, netid, timestamp, block_id) Values ("'+processed_address+'", "'+netid+'", CURRENT_TIMESTAMP, "'+block_id+'")')
             conn.commit()
         except pymysql.IntegrityError as e:
             logger.error("ERROR: Duplicate Value")
