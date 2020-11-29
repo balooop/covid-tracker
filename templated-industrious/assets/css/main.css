@@ -2924,7 +2924,7 @@ body{
 }
 .card{
   position: relative;
-  max-width: 300px;
+  max-width: 100%;
   height: auto;
   background: linear-gradient(-45deg,#fe0847,#feae3f);
   border-radius: 15px;
@@ -3070,3 +3070,36 @@ html,
     select {
       margin: 10px;
     }
+
+
+
+  #casebox { 
+      float:left;  
+      width:20%; 
+      height:280px;
+      color: white; 
+  } 
+  #maskbox { 
+    float:left;  
+    width:20%; 
+    height:280px;
+    color: white; 
+} 
+#socidistbox { 
+  float:left;  
+  width:20%; 
+  height:280px;
+  color: white; 
+} 
+  #sickbox{ 
+    float:left;  
+    width:20%; 
+    height:280px;
+    color: white;
+  } 
+  #dirtbox{ 
+    float:left;  
+    width:20%; 
+    height:280px;
+    color: white;
+  } 

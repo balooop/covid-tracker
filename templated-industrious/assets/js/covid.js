@@ -111,8 +111,14 @@ function searchCasesByAddr() {
 		resp = JSON.parse(resp);
 		console.log(resp);
 		console.log(resp['numCases']);
-		displayCasesforAddress(document.getElementById("searchTextField11").value, resp["numCases"]);
+		displayCasesforAddress(document.getElementById("searchTextField11").value, resp);
 	});
+
+
+
+
+	// var x = document.getElementById("casescardaddr");
+	// x.innerHTML = addr;
 };
 
 function customerComplaints() {
@@ -180,15 +186,67 @@ function finishSubmission() {
 	x.style.display = "none";
 }
 
-function displayCasesforAddress(addr, count) {
+function displayCasesforAddress(addr, resp) {
 	var x = document.getElementById("searchbyaddr");
 	x.style.display = "none";
 
 	var x = document.getElementById("casescardaddr");
 	x.innerHTML = addr;
-
 	var x = document.getElementById("casescardcount");
-	x.innerHTML = count;
+	x.innerHTML = resp["numCases"];
+	var x = document.getElementById("casescardcountmask");
+	x.innerHTML = resp["maskViolations"];
+	var x = document.getElementById("casescardcountsocdist");
+	x.innerHTML = resp["sdViolations"];
+	var x = document.getElementById("casescardcountsick");
+	x.innerHTML = resp["sickViolations"];
+	var x = document.getElementById("casescardcountdirt");
+	x.innerHTML = resp["dirtyViolations"];
+	if (resp["complaints"].length > 0){
+		var x = document.getElementById("block1");
+		x.style.display = "block";
+		var x = document.getElementById("quote1");
+		x.innerHTML = "\"" + resp["complaints"][0] + "\"";
+	}
+	else {
+		for (var e = 1; e < 4; e++){
+			var x = document.getElementById("block" + e);
+			x.style.display = "none";
+			var x = document.getElementById("quote" + e);
+			x.innerHTML = "";
+		}
+	}
+
+
+	if (resp["complaints"].length > 1){
+		var x = document.getElementById("block2");
+		x.style.display = "block";
+		var x = document.getElementById("quote2");
+		x.innerHTML = "\"" + resp["complaints"][1] + "\"";
+	}
+	else {
+		for (var e = 2; e < 4; e++){
+			var x = document.getElementById("block" + e);
+			x.style.display = "none";
+			var x = document.getElementById("quote" + e);
+			x.innerHTML = "";
+		}
+	}
+	
+	if (resp["complaints"].length > 2){
+		var x = document.getElementById("block3");
+		x.style.display = "block";
+		var x = document.getElementById("quote3");
+		x.innerHTML = "\"" + resp["complaints"][2] + "\"";
+	}
+	else {
+		for (var e = 3; e < 4; e++){
+			var x = document.getElementById("block" + e);
+			x.style.display = "none";
+			var x = document.getElementById("quote" + e);
+			x.innerHTML = "";
+		}
+	}
 
 	var x = document.getElementById("casescard");
 	x.style.display = "block";
@@ -203,9 +261,7 @@ function searchAgain() {
 }
 
 function eshanSecondTest(jsonOutput) {
-	// alert(typeof jsonOutput);
 	console.log(jsonOutput.series);
-	// alert("hlllo")
 
 	var x = document.getElementById("myChart");
 	var y = document.getElementById("noDataText");
@@ -214,7 +270,7 @@ function eshanSecondTest(jsonOutput) {
       type: 'treemap',
       options: {
         aspectType: 'palette',
-        maxChildren: [4, 4, 4],
+        maxChildren: [10, 10, 10],
         tooltipBox: {
           text: '%text'
         }
@@ -257,3 +313,4 @@ function removeSearchField(){
 
 
 
+// font size on block quotes larger

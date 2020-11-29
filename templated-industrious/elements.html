@@ -17,7 +17,7 @@
 	<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/jsvv=3.exp&sensor=false&libraries=places"></script>
 	<!-- CHANGE -->
-	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.92.0.min.js"></script> 
+	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.92.0.min.js"></script>
 	<script type="text/javascript"
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA653OyjftmU3g_j2Sn8VidNicpeOBVibc&libraries=places"></script>
 </head>
@@ -63,32 +63,103 @@
 						</div>
 					</div>
 				</div>
-				<section class="center" id="casescard" style="display: none;">
+				<section class="center" id="casescard" style="display: none;" style="display: inline;">
 					<div class="container-fluid">
 						<div class="container">
-							<div class="row">
-								<div class="col-sm-4">
-									<div class="card text-center">
-										<div class="title">
-											<i class="fa fa-map-pin" aria-hidden="true"></i>
-											<h2 id="casescardaddr"></h2>
-										</div>
-										<!-- <div class="price">
+							<div class="col-sm-4">
+								<div class="card text-center">
+									<div class="title">
+										<i class="fa fa-map-pin" aria-hidden="true"></i>
+										<h2 id="casescardaddr"></h2>
+									</div>
+									<!-- <div class="price">
 											<h4><sup>Cases</sup></h4>
 										</div> -->
-										<br>
-										<div class="option">
-											<ul>
-												<li> <i class="fa" aria-hidden="true"></i>Cases:
-												</li>
-												<li> <i class="fa bigtext" id="casescardcount" aria-hidden="true"></i>
-												</li>
-											</ul>
-										</div>
-										<!-- <h4 class="white" id="casescardcount"></h4> -->
-										<a class="button" style="margin: auto;" onclick="searchAgain();">Search
-											again</a>
+									<br>
+									<div class="option">
+										<ul>
+											<li class="casebox">
+												<i class="fa" aria-hidden="true"></i>Cases:
+												<br>
+												<i class="fa bigtext" id="casescardcount" aria-hidden="true"></i>
+												<br>
+											</li>
+											<li class="maskbox">
+												<i class="fa" aria-hidden="true"></i>Mask Violations:
+												<br>
+												<i class="fa bigtext" id="casescardcountmask" aria-hidden="true"></i>
+												<br>
+											</li>
+											<li class="socidistbox">
+												<i class="fa" aria-hidden="true"></i>Social Distancing Violations:
+												<br>
+												<i class="fa bigtext" id="casescardcountsocdist" aria-hidden="true"></i>
+												<br>
+											</li>
+											<li class="sickbox">
+												<i class="fa" aria-hidden="true"></i>Reports of sick individuals:
+												<br>
+												<i class="fa bigtext" id="casescardcountsick" aria-hidden="true"></i>
+												<br>
+											</li>
+											<li class="dirtbox">
+												<i class="fa" aria-hidden="true"></i>Reports of unsanitary
+												conditions:
+												<br>
+												<i class="fa bigtext" id="casescardcountdirt" aria-hidden="true"></i>
+												<br>
+											</li>
+											<!-- <div id="casebox">
+												<i class="fa" aria-hidden="true"></i><b style="color: white;">Cases:</b>
+												<br>
+												<i class="fa bigtext" id="casescardcount" aria-hidden="true"></i>
+											</div>
+											<div id="maskbox">
+												<i class="fa" aria-hidden="true"></i><b style="color: white;">Mask
+													Violations:</b><br>
+												<i class="fa bigtext" id="casescardcountmask" aria-hidden="true"></i>
+											</div>
+											<div id="socidistbox">
+												<i class="fa" aria-hidden="true"></i><b style="color: white;">Social
+													Distancing Violations:</b><br>
+												<i class="fa bigtext" id="casescardcountsocdist" aria-hidden="true"></i>
+											</div>
+
+											<div id="sickbox">
+												<i class="fa" aria-hidden="true"></i><b style="color: white;">Reports of
+													sick individuals:</b><br>
+												<i class="fa bigtext" id="casescardcountsick" aria-hidden="true"></i>
+											</div>
+
+											<div id="dirtbox">
+												<i class="fa" aria-hidden="true"></i><b style="color: white;">Sanitation
+													Violations:</b><br>
+												<i class="fa bigtext" id="casescardcountdirt" aria-hidden="true"></i>
+											</div> -->
+											<blockquote class="white"
+												style="border-left: 10px solid white; font-size: 29px" id="block1"
+												style="display: none;">
+												<p id="quote1"></p>
+											</blockquote>
+											<blockquote class="white"
+												style="border-left: 12px solid white; font-size: 29px" id="block2"
+												style="display: none;">
+												<p id="quote2"></p>
+											</blockquote>
+											<blockquote class="white"
+												style="border-left: 14px solid white; font-size: 29px" id="block3"
+												style="display: none;">
+												<p id="quote3"></p>
+											</blockquote>
+											<!-- <li> <i class="fa fa-check" aria-hidden="true"></i> Reports of lack of masks </li>
+											<li> <i class="fa fa-check" aria-hidden="true"></i> Reports of lack of social distancing </li>
+											<li> <i class="fa fa-check" aria-hidden="true"></i> Reports of sick individuals </li>
+											<li> <i class="fa fa-times" aria-hidden="true"></i> Reports of business being dirty </li> -->
+										</ul>
 									</div>
+									<!-- <h4 class="white" id="casescardcount"></h4> -->
+									<a class="button" style="margin: auto;" onclick="searchAgain();">Search
+										again</a>
 								</div>
 							</div>
 						</div>
