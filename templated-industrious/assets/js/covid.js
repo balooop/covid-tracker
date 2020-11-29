@@ -63,7 +63,7 @@ function processForm() {
 	for (var i = 0; i <= window.addrNum; i++){
 		if (window.isPositive == false) break;
 		if (window.autofill[i] == false){
-			alert("Please make sure to select your address from the dropdown! " + i);
+			alert("Please make sure to select your address from the dropdown!" + "(Location" + (i + 1) + ")");
 			return;
 		}
 	}
@@ -126,7 +126,7 @@ function searchCasesByAddr() {
 		alert("Please input your address");
 		return;
 	}
-	if (window.autofill[11] == false){
+	if (window.autofillSearch == false){
 		alert("Please make sure to select your address from the dropdown!");
 		return;
 	}

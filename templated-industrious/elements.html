@@ -176,6 +176,7 @@
 		<script>
 			function initialize() {
 				updateChartTest();
+				window.autofillSearch = false;
 				for (var i = 11; i < 12; i++) {
 					var input = document.getElementById('searchTextField' + i);
 					var autocomplete = new google.maps.places.Autocomplete(input);
@@ -185,7 +186,7 @@
 						console.log(place);
 						console.log(this);
 						document.getElementById('searchTextField' + 11).value = place;
-						window.autofill[11] = true;
+						window.autofillSearch = true;
 					});
 				}
 			}
