@@ -335,12 +335,12 @@ function eshanSecondTest(jsonOutput) {
 
 	var x = document.getElementById("myChart");
 	var y = document.getElementById("noDataText");
-
+	// https://www.zingchart.com/docs/chart-types/treemap
     let chartConfig = {
       type: 'treemap',
       options: {
         aspectType: 'palette',
-        maxChildren: [10, 10, 10],
+        maxChildren: [100, 100, 100],
         tooltipBox: {
           text: '%text'
         }
