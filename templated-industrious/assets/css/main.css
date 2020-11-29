@@ -2935,10 +2935,10 @@ body{
 -webkit-transition: .5s;
 transition: .5s;
 }
-.card:hover{
+/* .card:hover{
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
-}
+} */
 .col-sm-4:nth-child(3) .card ,
 .col-sm-4:nth-child(3) .card .title .fa{
   background: linear-gradient(-45deg,#f403d1,#64b5f6);
@@ -3102,3 +3102,26 @@ html,
     width:20%; 
     color: white;
   } 
+
+  #grapeHead{ 
+    float:left;  
+    /* margin: auto; */
+    width:40%; 
+    color: #6f2da8 !important;
+  } 
+
+  #reportHead{ 
+    float:left;  
+    /* margin: auto; */
+    width:10%; 
+    color: white;
+  } 
+
+  #hotspotsHead{ 
+    float:left;  
+    /* margin: auto; */
+    width:50%; 
+    color: white;
+  } 
+
+

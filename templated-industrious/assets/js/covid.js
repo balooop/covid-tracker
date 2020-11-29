@@ -49,13 +49,25 @@ function notcleared() {
 
 // called when 
 function processForm() {
-	if (document.getElementById("netid").value == false) {
-		alert("Please input your NetID");
+	// CHANGE
+	if (window.posClicked != true) {
+		alert("Please specify if you have recently tested positive!");
 		return;
 	}
-	// CHANGE
 	if (document.getElementById("posForm").style.display == "block" && document.getElementById("searchTextField0").value == "") {
-		alert("Please input an address");
+		alert("Please input an address!");
+		return;
+	}
+	if (window.clearedFromIso != true && window.delOrNot == false) {
+		alert("Please specify if you have recently cleared from isolation!");
+		return;
+	}
+	if (window.reportBus != true) {
+		alert("Please specify if you would like to report a business for violating COVID-19 policies!");
+		return;
+	}
+	if (document.getElementById("netid").value == false) {
+		alert("Please input your NetID!");
 		return;
 	}
 	else {
@@ -301,13 +313,20 @@ function addSearchField(){
 	window.addrNum++;
 	var x = document.getElementById("field" + window.addrNum + "Div");
 	x.style.display = "block";
+	var x = document.getElementById("searchTextField" + window.addrNum);
+	x.style.display = "block";
 }
 
 function removeSearchField(){
-	if (window.addrNum == 0) return;
+	if (window.addrNum == 0) {
+		document.getElementById('searchTextField' + window.addrNum).value = "";
+		return;
+	}
 	var x = document.getElementById("field" + window.addrNum + "Div");
 	x.style.display = "none";
-	document.getElementById("searchTextField2").setAttribute('value', '');
+	var x = document.getElementById("searchTextField" + window.addrNum);
+	x.style.display = "none";
+	document.getElementById('searchTextField' + window.addrNum).value = "";
 	window.addrNum--;
 }
 

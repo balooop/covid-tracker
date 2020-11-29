@@ -24,9 +24,10 @@
 
 	<!-- Header -->
 	<header id="header">
-		<a class="logo" href="index.html">GRAPE</a>
-		<a class="logo" href="index.html">Report</a>
-		<a class="logo" href="elements.html">Hotspots</a>
+		<img src="grape.png" style="height:50px; width:50px">
+		<a class="logo" id="grapeHead" href="index.html">GRAPE</a>
+		<a class="logo" id="reportHead" href="index.html">Report</a>
+		<a class="logo" id="hotspotsHead" href="elements.html">Hotspots</a>
 		<!-- <a class="logo" href="generic.html">Violations</a> -->
 	</header>
 
@@ -49,9 +50,9 @@
 			<form action="/action_page.php">
 				<h2>Have you recently tested positive?</h2>
 				<div class="cd-switch switch">
-					<input type="radio" name="choice" id="yesPos" onclick="positive();">
+					<input type="radio" name="choice" id="yesPos" onclick="positive(); window.posClicked = true">
 					<label for="yesPos">Yes</label>
-					<input type="radio" name="choice" id="noPos" onclick="negative();">
+					<input type="radio" name="choice" id="noPos" onclick="negative(); window.posClicked = true">
 					<label for="noPos">No</label>
 					<span class="switchFilter"></span>
 				</div>
@@ -167,94 +168,94 @@
 					<b>
 						<h3>Where all have you been in the past 48 hours?</h4>
 					</b>
-					<div class="row" id="field0Div">
+					<div class="row">
 						<div class="col-25">
-							<label for="searchTextField0">Location 1</label>
+							<label for="searchTextField0" id="field0Div">Location 1</label>
 						</div>
 						<div class="col-75">
 							<input id="searchTextField0" type="text" size="50" placeholder="Enter a location"
 								autocomplete="on" runat="server" />
 						</div>
 					</div>
-					<div class="row" id="field1Div" style="display: none;">
+					<div class="row">
 						<div class="col-25">
-							<label for="searchTextField1">Location 2</label>
+							<label id="field1Div" for="searchTextField1" style="display: none;">Location 2</label>
 						</div>
 						<div class="col-75">
 							<input id="searchTextField1" type="text" size="50" placeholder="Enter a location"
-								autocomplete="on" runat="server" />
+								autocomplete="on" runat="server" style="display: none;"/>
 						</div>
 					</div>
-					<div class="row" id="field2Div" style="display: none;">
+					<div class="row">
 						<div class="col-25">
-							<label for="searchTextField2">Location 3</label>
+							<label id="field2Div" for="searchTextField2" style="display: none;">Location 3</label>
 						</div>
 						<div class="col-75">
 							<input id="searchTextField2" type="text" size="50" placeholder="Enter a location"
-								autocomplete="on" runat="server" />
+								autocomplete="on" runat="server" style="display: none;"/>
 						</div>
 					</div>
-					<div class="row" id="field3Div" style="display: none;">
+					<div class="row">
 						<div class="col-25">
-							<label for="searchTextField3">Location 4</label>
+							<label id="field3Div" for="searchTextField3" style="display: none;">Location 4</label>
 						</div>
 						<div class="col-75">
 							<input id="searchTextField3" type="text" size="50" placeholder="Enter a location"
-								autocomplete="on" runat="server" />
+								autocomplete="on" runat="server" style="display: none;"/>
 						</div>
 					</div>
-					<div class="row" id="field4Div" style="display: none;">
+					<div class="row">
 						<div class="col-25">
-							<label for="searchTextField4">Location 5</label>
+							<label id="field4Div" for="searchTextField4" style="display: none;">Location 5</label>
 						</div>
 						<div class="col-75">
 							<input id="searchTextField4" type="text" size="50" placeholder="Enter a location"
-								autocomplete="on" runat="server" />
+								autocomplete="on" runat="server" style="display: none;"/>
 						</div>
 					</div>
-					<div class="row" id="field5Div" style="display: none;">
+					<div class="row">
 						<div class="col-25">
-							<label for="searchTextField5">Location 6</label>
+							<label id="field5Div" for="searchTextField5" style="display: none;">Location 6</label>
 						</div>
 						<div class="col-75">
 							<input id="searchTextField5" type="text" size="50" placeholder="Enter a location"
-								autocomplete="on" runat="server" />
+								autocomplete="on" runat="server" style="display: none;"/>
 						</div>
 					</div>
-					<div class="row" id="field6Div" style="display: none;">
+					<div class="row">
 						<div class="col-25">
-							<label for="searchTextField6">Location 7</label>
+							<label id="field6Div" for="searchTextField6" style="display: none;">Location 7</label>
 						</div>
 						<div class="col-75">
 							<input id="searchTextField6" type="text" size="50" placeholder="Enter a location"
-								autocomplete="on" runat="server" />
+								autocomplete="on" runat="server" style="display: none;"/>
 						</div>
 					</div>
-					<div class="row" id="field7Div" style="display: none;">
+					<div class="row">
 						<div class="col-25">
-							<label for="searchTextField7">Location 8</label>
+							<label id="field7Div" for="searchTextField7" style="display: none;">Location 8</label>
 						</div>
 						<div class="col-75">
 							<input id="searchTextField7" type="text" size="50" placeholder="Enter a location"
-								autocomplete="on" runat="server" />
+								autocomplete="on" runat="server" style="display: none;"/>
 						</div>
 					</div>
-					<div class="row" id="field8Div" style="display: none;">
+					<div class="row">
 						<div class="col-25">
-							<label for="searchTextField8">Location 9</label>
+							<label id="field8Div" for="searchTextField8" style="display: none;">Location 9</label>
 						</div>
 						<div class="col-75">
 							<input id="searchTextField8" type="text" size="50" placeholder="Enter a location"
-								autocomplete="on" runat="server" />
+								autocomplete="on" runat="server" style="display: none;"/>
 						</div>
 					</div>
-					<div class="row" id="field9Div" style="display: none;">
+					<div class="row">
 						<div class="col-25">
-							<label for="searchTextField9">Location 10</label>
+							<label id="field9Div" for="searchTextField9" style="display: none;">Location 10</label>
 						</div>
 						<div class="col-75">
 							<input id="searchTextField9" type="text" size="50" placeholder="Enter a location"
-								autocomplete="on" runat="server" />
+								autocomplete="on" runat="server" style="display: none;"/>
 						</div>
 					</div>
 					<br>
@@ -267,9 +268,9 @@
 				<div id="isolationSection" style="display: none;">
 					<h2>Have you recently been cleared from isolation?</h2>
 					<div class="cd-switch switch">
-						<input type="radio" name="choice" id="yesIso" onclick="cleared();">
+						<input type="radio" name="choice" id="yesIso" onclick="cleared();window.clearedFromIso = true">
 						<label for="yesIso">Yes</label>
-						<input type="radio" name="choice" id="noIso" onclick="notcleared();">
+						<input type="radio" name="choice" id="noIso" onclick="notcleared();window.clearedFromIso = true">
 						<label for="noIso">No</label>
 						<span class="switchFilter"></span>
 					</div>
@@ -280,9 +281,9 @@
 			<form action="/action_page.php">
 				<h2>Would you like to report any business not following COVID-19 guidelines?</h2>
 				<div class="cd-switch switch">
-					<input type="radio" name="choice" id="yes" onclick="report();">
+					<input type="radio" name="choice" id="yes" onclick="report();window.reportBus = true">
 					<label for="yes">Yes</label>
-					<input type="radio" name="choice" id="no" onclick="noreport();">
+					<input type="radio" name="choice" id="no" onclick="noreport();window.reportBus = true">
 					<label for="no">No</label>
 					<span class="switchFilter"></span>
 				</div>
@@ -363,7 +364,7 @@
 				<section>
 					<div class="content">
 						<blockquote>
-							<p>"I worship Bezos occasionally. My other hobbies include TikTok, drugs, and filling out job apps."
+							<p>"I worship Bezos occasionally. My other hobbies include TikTok and filling out job apps."
 							</p>
 						</blockquote>
 						<div class="author">
