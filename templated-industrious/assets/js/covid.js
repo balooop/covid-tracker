@@ -355,8 +355,14 @@ function eshanSecondTest(jsonOutput) {
 		height: '100%',
 		width: '100%',
 	  });
+	  if (jsonOutput.series == null || jsonOutput.series.length < 1){
+		x.style.display = "none";
+		y.style.display = "block";
+	  }
+	  else{
 		x.style.display = "block";
 		y.style.display = "none";
+	  }
 }
 
 function addSearchField(){
