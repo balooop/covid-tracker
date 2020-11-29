@@ -3048,6 +3048,9 @@ font-size: 16px;
 .bigtext {
   font-size: 80px;
 }
+.biggertext {
+  font-size: 150px;
+}
   
 html,
     body {
@@ -3073,33 +3076,29 @@ html,
 
 
 
-  #casebox { 
+  #dirtbox { 
       float:left;  
-      width:20%; 
-      height:280px;
+      width:25%; 
       color: white; 
   } 
   #maskbox { 
     float:left;  
-    width:20%; 
-    height:280px;
+    width:25%; 
     color: white; 
 } 
 #socidistbox { 
   float:left;  
-  width:20%; 
-  height:280px;
+  width:25%; 
   color: white; 
 } 
   #sickbox{ 
     float:left;  
-    width:20%; 
-    height:280px;
+    width:25%; 
     color: white;
   } 
-  #dirtbox{ 
-    float:left;  
+  #casebox{ 
+    /* float:left;   */
+    /* margin: auto; */
     width:20%; 
-    height:280px;
     color: white;
   } 

@@ -78,37 +78,38 @@
 									<br>
 									<div class="option">
 										<ul>
-											<li class="casebox">
-												<i class="fa" aria-hidden="true"></i>Cases:
-												<br>
-												<i class="fa bigtext" id="casescardcount" aria-hidden="true"></i>
-												<br>
-											</li>
-											<li class="maskbox">
-												<i class="fa" aria-hidden="true"></i>Mask Violations:
-												<br>
-												<i class="fa bigtext" id="casescardcountmask" aria-hidden="true"></i>
-												<br>
-											</li>
-											<li class="socidistbox">
-												<i class="fa" aria-hidden="true"></i>Social Distancing Violations:
-												<br>
-												<i class="fa bigtext" id="casescardcountsocdist" aria-hidden="true"></i>
-												<br>
-											</li>
-											<li class="sickbox">
-												<i class="fa" aria-hidden="true"></i>Reports of sick individuals:
-												<br>
-												<i class="fa bigtext" id="casescardcountsick" aria-hidden="true"></i>
-												<br>
-											</li>
-											<li class="dirtbox">
-												<i class="fa" aria-hidden="true"></i>Reports of unsanitary
-												conditions:
+											<li id="dirtbox">
+												<i class="fa" aria-hidden="true">Sanitation Violations:</i>
 												<br>
 												<i class="fa bigtext" id="casescardcountdirt" aria-hidden="true"></i>
 												<br>
 											</li>
+											<li id="maskbox">
+												<i class="fa" aria-hidden="true">Mask Violations:</i>
+												<br>
+												<i class="fa bigtext" id="casescardcountmask" aria-hidden="true"></i>
+												<br>
+											</li>
+											<li id="socidistbox">
+												<i class="fa" aria-hidden="true">Social Distancing Violations:</i>
+												<br>
+												<i class="fa bigtext" id="casescardcountsocdist" aria-hidden="true"></i>
+												<br>
+											</li>
+											<li id="sickbox">
+												<i class="fa" aria-hidden="true">Reports of Sick Individuals:</i>
+												<br>
+												<i class="fa bigtext" id="casescardcountsick" aria-hidden="true"></i>
+												<br>
+											</li>
+											<li id="casebox">
+												<i class="fa" aria-hidden="true">Cases:</i>
+												<br>
+												<i class="fa biggertext" id="casescardcount" aria-hidden="true"></i>
+												<br>
+											</li>
+										</ul>
+
 											<!-- <div id="casebox">
 												<i class="fa" aria-hidden="true"></i><b style="color: white;">Cases:</b>
 												<br>
@@ -136,26 +137,23 @@
 													Violations:</b><br>
 												<i class="fa bigtext" id="casescardcountdirt" aria-hidden="true"></i>
 											</div> -->
+											<br>
 											<blockquote class="white"
-												style="border-left: 10px solid white; font-size: 29px" id="block1"
-												style="display: none;">
+												style="border-left: 10px solid white; font-size: 29px" id="block1">
 												<p id="quote1"></p>
 											</blockquote>
 											<blockquote class="white"
-												style="border-left: 12px solid white; font-size: 29px" id="block2"
-												style="display: none;">
+												style="border-left: 12px solid white; font-size: 29px" id="block2">
 												<p id="quote2"></p>
 											</blockquote>
 											<blockquote class="white"
-												style="border-left: 14px solid white; font-size: 29px" id="block3"
-												style="display: none;">
+												style="border-left: 14px solid white; font-size: 29px" id="block3">
 												<p id="quote3"></p>
 											</blockquote>
 											<!-- <li> <i class="fa fa-check" aria-hidden="true"></i> Reports of lack of masks </li>
 											<li> <i class="fa fa-check" aria-hidden="true"></i> Reports of lack of social distancing </li>
 											<li> <i class="fa fa-check" aria-hidden="true"></i> Reports of sick individuals </li>
 											<li> <i class="fa fa-times" aria-hidden="true"></i> Reports of business being dirty </li> -->
-										</ul>
 									</div>
 									<!-- <h4 class="white" id="casescardcount"></h4> -->
 									<a class="button" style="margin: auto;" onclick="searchAgain();">Search
