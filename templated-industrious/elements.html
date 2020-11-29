@@ -57,7 +57,7 @@
 								</div>
 								<div class="col-75">
 									<input id="searchTextField11" type="text" size="50" placeholder="Enter a location"
-										autocomplete="on" runat="server" />
+										autocomplete="on" runat="server" onchange="window.autofill[10] = false"/>
 								</div>
 							</div>
 							<a class="button" style="margin: auto;" onclick="searchCasesByAddr();">Search</a>
@@ -185,6 +185,7 @@
 						console.log(place);
 						console.log(this);
 						document.getElementById('searchTextField' + 11).value = place;
+						window.autofill[11] = true;
 					});
 				}
 			}

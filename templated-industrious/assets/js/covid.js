@@ -18,7 +18,6 @@ function positive() {
 	x.style.display = "none";
 
 	window.delOrNot = false;
-	window.clearedFromIso = false;
 	window.isPositive = true;
 
 }
@@ -31,7 +30,6 @@ function negative() {
 	x.style.display = "block";
 
 	window.delOrNot = false;
-	window.clearedFromIso = false;
 	window.isPositive = false;
 }
 
@@ -63,8 +61,9 @@ function processForm() {
 		return;
 	}
 	for (var i = 0; i <= window.addrNum; i++){
+		if (window.isPositive == false) break;
 		if (window.autofill[i] == false){
-			alert("Please make sure to select your address from the dropdown!");
+			alert("Please make sure to select your address from the dropdown! " + i);
 			return;
 		}
 	}
@@ -72,9 +71,19 @@ function processForm() {
 		alert("Please specify if you have recently cleared from isolation!");
 		return;
 	}
-	if (window.reportBus != true) {
+	if (window.reportBus != 0 && window.reportBus != 1) {
 		alert("Please specify if you would like to report a business for violating COVID-19 policies!");
 		return;
+	}
+	if (window.reportBus == 0){
+		if (window.autofill[10] == false){
+			alert("Please make sure to select your address from the dropdown!");
+			return;
+		}
+		if (document.getElementById("businessReport").value == ""){
+			alert("Please make sure to give a reason for reporting!");
+			return;
+		}
 	}
 	if (document.getElementById("netid").value == false) {
 		alert("Please input your NetID!");
@@ -115,6 +124,10 @@ function processForm() {
 function searchCasesByAddr() {
 	if (document.getElementById("searchTextField11").value == false) {
 		alert("Please input your address");
+		return;
+	}
+	if (window.autofill[11] == false){
+		alert("Please make sure to select your address from the dropdown!");
 		return;
 	}
 	var lambda = new AWS.Lambda({ region: 'us-east-1', apiVersion: '2015-03-31' });
