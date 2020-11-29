@@ -29,27 +29,28 @@ def handler(event, context):
         numCases = row[0]
         blockId = row[1]
         addrVisited = row[2]
-        visited.append(addrVisited)
+        street_address = addrVisited.split(',')[0].split(' ')
+        processed_address = [street_address[0] + ' ' + ' '.join(filter(lambda x: x.isalpha(), street_address[1:]))] + addrVisited.split(',')[1:]
+        processed_address = ','.join(processed_address)
+        visited.append(processed_address)
         if blockId not in dict:
-            dict[blockId] = [(numCases,addrVisited)]
+            dict[blockId] = [(numCases,processed_address)]
         else:
-            dict[blockId].append((numCases,addrVisited))
+            dict[blockId].append((numCases,processed_address))
             
-    print("NAV")
     violations = col1.find()
-    print("GAY")
     for document in violations:
-        print(document["Address"])
-        if document["Address"] not in visited:
-            # compute 'block_id'
-            firstHalf = document["Address"].split(' ')[0]
-            firstHalf = re.sub("[^0-9]", "", firstHalf)
-            street_address = document["Address"].split(',')[0].split(' ')
-            block_id = str((int(firstHalf)//100)*100) + ''.join(street_address[1:])
+        firstHalf = document["Address"].split(' ')[0]
+        firstHalf = re.sub("[^0-9]", "", firstHalf)
+        street_address = document["Address"].split(',')[0].split(' ')
+        block_id = str((int(firstHalf)//100)*100) + ''.join(filter(lambda x: x.isalpha(), street_address[1:]))
+        processed_address = [street_address[0] + ' ' + ' '.join(filter(lambda x: x.isalpha(), street_address[1:]))] + document["Address"].split(',')[1:]
+        processed_address = ','.join(processed_address)
+        if processed_address not in visited:
             if block_id not in dict:
-                dict[block_id] = [(0, document["Address"])]
+                dict[block_id] = [(0, processed_address)]
             else:
-                dict[block_id].append((0, document["Address"]))
+                dict[block_id].append((0, processed_address))
             
     
     type = {}
@@ -88,13 +89,13 @@ def handler(event, context):
                     numViol += x["sick"]
                     numViol += x["dirty"]
             childy = {}
-            childy['text'] = str(child[0]) + " Cases at " + child[1].split(',')[0] + ", " + str(numViol) + " violations" 
+            childy['text'] = child[1].split(',')[0] + " - " + str(child[0]) + " Case(s), " + str(numViol) + " Violation(s)" 
             childy['value'] = child[0] + numViol
             children.append(childy)
             sumChid += child[0]
             sumChildViol += numViol
         parent['children'] = children
-        parent['text'] = key + ' - ' + str(sumChid) + " Cases, " + str(sumChildViol) + " Violations"
+        parent['text'] = key + ' - ' + str(sumChid) + " Case(s), " + str(sumChildViol) + " Violation(s)"
         series.append(parent)
 
     finalJson['series'] = series

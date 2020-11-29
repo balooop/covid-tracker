@@ -1,4 +1,5 @@
 import pymongo
+import re
 
 
 client = pymongo.MongoClient("mongodb+srv://user:cs411project@cluster0.2xbcj.mongodb.net/?retryWrites=true&w=majority")
@@ -14,7 +15,7 @@ def handler(event, context):
   sickFlag = 0
   dirtyFlag = 0
   
-  maskWords = ['not wearing', 'covering', 'wearing', 'not wearing', 'no mask', 'no masks', 'masks under nose', 'without masks', 'took off mask', 'without mask', 'took off masks', 'mask under nose']
+  maskWords = ['not wearing', 'not covering', 'no mask', 'under chin', 'under his chin', 'under her chin', 'under their chin', 'without mask', 'took off mask', 'without a mask', 'without his mask', 'without her mask', 'took off his mask', 'took off her mask', 'took off their mask', 'under nose']
   socialDistancing = ['too many people', 'social distancing', 'close', 'group', 'groups', 'crowd',  'crowds', 'crowded', 'no space', '6 feet', 'close', 'touching', 'shaking hands', 'sharing food']
   sick = ['cough', 'coughing', 'sick', 'ill', 'sneeze', 'sneezing', 'drinking the liquids on the floor of kams', 'sneezed', 'puke', 'debilitated', 'infected', 'green', 'ailing', 'frail', 'fever', 'feverish']
   dirty = ['dirty', 'nasty', 'gross', 'not clean', 'nav', 'unsanitary', 'unclean', 'not sanitary', 'grubby', 'filthy', 'unwashed', 'not washed', 'stains', 'stain', 'smeared']
@@ -38,18 +39,22 @@ def handler(event, context):
       if word in cmpl:
           dirtyFlag = 1
           break
-    
+  firstHalf = addr.split(' ')[0]
+  firstHalf = re.sub("[^0-9]", "", firstHalf)
+  street_address = addr.split(',')[0].split(' ')
+  processed_address = [street_address[0] + ' ' + ' '.join(filter(lambda x: x.isalpha(), street_address[1:]))] + addr.split(',')[1:]
+  processed_address = ','.join(processed_address)
   personDocument = {
-    "Address": addr,
+    "Address": processed_address,
     "violations": [cmpl],
     "mask": maskFlag,
     "socialDistancing": socialDistancingFlag,
     "sick": sickFlag,
     "dirty": dirtyFlag
   }
-  if(col.find({'Address': addr}).count() > 0):
-    myquery = { "Address": addr }
-    curViol = col.find({'Address': addr})
+  if(col.find({'Address': processed_address}).count() > 0):
+    myquery = { "Address": processed_address }
+    curViol = col.find({'Address': processed_address})
     violList = [cmpl]
     numMask = 0
     numSocialDist = 0

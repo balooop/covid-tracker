@@ -141,7 +141,7 @@ function searchCasesByAddr() {
 		resp = JSON.parse(resp);
 		console.log(resp);
 		console.log(resp['numCases']);
-		displayCasesforAddress(document.getElementById("searchTextField11").value, resp);
+		displayCasesforAddress(resp);
 	});
 };
 
@@ -267,12 +267,12 @@ function finishSubmission() {
 	x.style.display = "none";
 }
 
-function displayCasesforAddress(addr, resp) {
+function displayCasesforAddress(resp) {
 	var x = document.getElementById("searchbyaddr");
 	x.style.display = "none";
 
 	var x = document.getElementById("casescardaddr");
-	x.innerHTML = addr;
+	x.innerHTML = resp["Address"];
 	var x = document.getElementById("casescardcount");
 	x.innerHTML = resp["numCases"];
 	var x = document.getElementById("casescardcountmask");
