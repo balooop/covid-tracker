@@ -241,7 +241,7 @@ function shameBusiness(bus){
 		var x = document.getElementById("business" + i);
 		if (bus.length == 0 && i == 0){
 			x.style.display = "block";
-			x.innerHTML = "No troublesome businesses reported! We've got our eyes on you Kams..."
+			x.innerHTML = "No troublesome businesses reported! We've got our eyes on you KAMS..."
 			var x = document.getElementById("business" + 1);
 			x.style.display = "block";
 			x.innerHTML = "Check back later for updated data."
