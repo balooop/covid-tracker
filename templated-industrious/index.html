@@ -28,7 +28,7 @@
 		<a class="logo" id="grapeHead" href="index.html">GRAPE</a>
 		<a class="logo" id="reportHead" href="index.html">Report</a>
 		<a class="logo" id="hotspotsHead" href="elements.html">Hotspots</a>
-		<!-- <a class="logo" href="generic.html">Violations</a> -->
+		<a class="logo" id="leaderHead" href="generic.html">Leaderboard</a>
 	</header>
 
 	<!-- Banner -->
@@ -68,16 +68,8 @@
 								var input = document.getElementById('searchTextField' + i);
 								var autocomplete = new google.maps.places.Autocomplete(input);
 								var place = autocomplete.setFields(["formatted_address"]);
-								// google.maps.event.addListener(autocomplete, 'place_changed', function () {
-								// 	var place = autocomplete.getPlace();
-								// 	var pavan = i;
-								// 	// document.getElementById('city2').value = place.name;
-								// 	// document.getElementById('cityLat').value = place.geometry.location.lat();
-								// 	// document.getElementById('cityLng').value = place.geometry.location.lng();
-								// });
 								if (i == 0) {
 									google.maps.event.addListener(autocomplete, 'place_changed', function () {
-										// alert("hi");
 										var place = this.getPlace().formatted_address;
 										console.log(place);
 										console.log(this);
@@ -373,8 +365,6 @@
 						<a href="https://www.linkedin.com/in/eshandhar/"><i class="icon fa-linkedin"></i></a>
 						<a href="https://github.com/Eshand"><i class="icon fa-github"></i></a>
 						<a href="https://www.instagram.com/eshan.d/?hl=en"><i class="icon fa-instagram"></i></a>
-						<!-- <a href="#"><i class="icon fa-twitter"></i></a>
-						<a href="#"><i class="icon fa-facebook"></i></a> -->
 					</div>
 				</section>
 				<section>
@@ -444,24 +434,6 @@
 						believe that knowledge is power, and we hope to be able to bring that power to students, staff,
 						and local residents to be able to make smarter, more informed decisions.</p>
 				</section>
-				<!-- <section>
-					<h4>Sem turpis amet semper</h4>
-					<ul class="alt">
-						<li><a href="#">Dolor pulvinar sed etiam.</a></li>
-						<li><a href="#">Etiam vel lorem sed amet.</a></li>
-						<li><a href="#">Felis enim feugiat viverra.</a></li>
-						<li><a href="#">Dolor pulvinar magna etiam.</a></li>
-					</ul>
-				</section>
-				<section>
-					<h4>Magna sed ipsum</h4>
-					<ul class="plain">
-						<li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
-						<li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
-						<li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
-						<li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
-					</ul>
-				</section> -->
 			</div>
 			<div class="copyright">
 				&copy; GRAPE.

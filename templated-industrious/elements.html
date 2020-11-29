@@ -32,7 +32,7 @@
 			<a class="logo" id="grapeHead" href="index.html">GRAPE</a>
 			<a class="logo" id="reportHead" href="index.html">Report</a>
 			<a class="logo" id="hotspotsHead" href="elements.html">Hotspots</a>
-			<!-- <a class="logo" href="generic.html">Violations</a> -->
+			<a class="logo" id="leaderHead" href="generic.html">Leaderboard</a>
 		</header>
 
 		<!-- Heading -->
@@ -68,14 +68,11 @@
 					<div class="container-fluid">
 						<div class="container">
 							<div class="col-sm-4">
-								<div class="card text-center">
+								<div class="COVCard text-center">
 									<div class="title">
 										<i class="fa fa-map-pin" aria-hidden="true"></i>
 										<h2 id="casescardaddr"></h2>
 									</div>
-									<!-- <div class="price">
-											<h4><sup>Cases</sup></h4>
-										</div> -->
 									<br>
 									<div class="option">
 										<ul>
@@ -110,34 +107,6 @@
 												<br>
 											</li>
 										</ul>
-
-											<!-- <div id="casebox">
-												<i class="fa" aria-hidden="true"></i><b style="color: white;">Cases:</b>
-												<br>
-												<i class="fa bigtext" id="casescardcount" aria-hidden="true"></i>
-											</div>
-											<div id="maskbox">
-												<i class="fa" aria-hidden="true"></i><b style="color: white;">Mask
-													Violations:</b><br>
-												<i class="fa bigtext" id="casescardcountmask" aria-hidden="true"></i>
-											</div>
-											<div id="socidistbox">
-												<i class="fa" aria-hidden="true"></i><b style="color: white;">Social
-													Distancing Violations:</b><br>
-												<i class="fa bigtext" id="casescardcountsocdist" aria-hidden="true"></i>
-											</div>
-
-											<div id="sickbox">
-												<i class="fa" aria-hidden="true"></i><b style="color: white;">Reports of
-													sick individuals:</b><br>
-												<i class="fa bigtext" id="casescardcountsick" aria-hidden="true"></i>
-											</div>
-
-											<div id="dirtbox">
-												<i class="fa" aria-hidden="true"></i><b style="color: white;">Sanitation
-													Violations:</b><br>
-												<i class="fa bigtext" id="casescardcountdirt" aria-hidden="true"></i>
-											</div> -->
 											<br>
 											<blockquote class="white"
 												style="border-left: 10px solid white; font-size: 29px" id="block1">
@@ -151,12 +120,7 @@
 												style="border-left: 14px solid white; font-size: 29px" id="block3">
 												<p id="quote3"></p>
 											</blockquote>
-											<!-- <li> <i class="fa fa-check" aria-hidden="true"></i> Reports of lack of masks </li>
-											<li> <i class="fa fa-check" aria-hidden="true"></i> Reports of lack of social distancing </li>
-											<li> <i class="fa fa-check" aria-hidden="true"></i> Reports of sick individuals </li>
-											<li> <i class="fa fa-times" aria-hidden="true"></i> Reports of business being dirty </li> -->
 									</div>
-									<!-- <h4 class="white" id="casescardcount"></h4> -->
 									<a class="button" style="margin: auto;" onclick="searchAgain();">Search
 										again</a>
 								</div>
@@ -164,7 +128,7 @@
 						</div>
 					</div>
 				</section>
-				<h2><b>Current COVID-19 Hotspots</b></h2>
+				<h2><b>Current COVID-19 Hotspots/Violators</b></h2>
 				<div id="myChart"></div>
 				<div class="row" id="noDataText" style="display: none;">
 					<div class="col-6 col-12-medium">
@@ -207,24 +171,6 @@
 							staff,
 							and local residents to be able to make smarter, more informed decisions.</p>
 					</section>
-					<!-- <section>
-					<h4>Sem turpis amet semper</h4>
-					<ul class="alt">
-						<li><a href="#">Dolor pulvinar sed etiam.</a></li>
-						<li><a href="#">Etiam vel lorem sed amet.</a></li>
-						<li><a href="#">Felis enim feugiat viverra.</a></li>
-						<li><a href="#">Dolor pulvinar magna etiam.</a></li>
-					</ul>
-				</section>
-				<section>
-					<h4>Magna sed ipsum</h4>
-					<ul class="plain">
-						<li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
-						<li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
-						<li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
-						<li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
-					</ul>
-				</section> -->
 				</div>
 				<div class="copyright">
 					&copy; GRAPE.
@@ -232,7 +178,6 @@
 			</div>
 		</footer>
 
-		<!-- Scripts -->
 		<!-- Scripts -->
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/covid.js"></script>

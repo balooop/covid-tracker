@@ -49,9 +49,7 @@ function notcleared() {
 	window.delOrNot = false;
 }
 
-// called when 
 function processForm() {
-	// CHANGE
 	if (window.posClicked != true) {
 		alert("Please specify if you have recently tested positive!");
 		return;
@@ -91,9 +89,6 @@ function processForm() {
 	}
 	else {
 		var lambda = new AWS.Lambda({ region: 'us-east-1', apiVersion: '2015-03-31' });
-		// var addr;
-		// if (document.getElementById("searchTextField0").value == "") addr = "NULL";
-		// else addr = document.getElementById("searchTextField0").value;
 		console.log(JSON.stringify({ "address0": document.getElementById("searchTextField0").value, "address1": document.getElementById("searchTextField1").value,
 		"address2": document.getElementById("searchTextField2").value,"address3": document.getElementById("searchTextField3").value,
 		"address4": document.getElementById("searchTextField4").value,"address5": document.getElementById("searchTextField5").value,
@@ -148,12 +143,6 @@ function searchCasesByAddr() {
 		console.log(resp['numCases']);
 		displayCasesforAddress(document.getElementById("searchTextField11").value, resp);
 	});
-
-
-
-
-	// var x = document.getElementById("casescardaddr");
-	// x.innerHTML = addr;
 };
 
 function customerComplaints() {
@@ -173,32 +162,21 @@ function customerComplaints() {
 		Payload: JSON.stringify({ "Complaints": document.getElementById("businessReport").value, "Address": document.getElementById("searchTextField10").value })
 	};
 
-	// add actual code below
 	var numCases = 0;
 	lambda.invoke(params, function (err, data) {
 		if (err) console.log("err,err.stack");
 		else console.log("success!");
 		console.log(data);
-		// numCases = data.Payload;
-		// displayCasesforAddress(document.getElementById("searchTextField11").value, numCases);
 	});
 };
 
 function updateChartTest() {
-	// alert("in");
-	// if (document.getElementById("reportForm").style.display == "none") return;
-	// if (document.getElementById("businessReport").value == false) {
-	// 	alert("Please input a reason");
-	// 	return;
-	// }
 	var lambda = new AWS.Lambda({ region: 'us-east-1', apiVersion: '2015-03-31' });
 	var params = {
 		FunctionName: 'arn:aws:lambda:us-east-1:834423887668:function:customerIsMad',
 		InvocationType: 'RequestResponse'
-		// Payload: JSON.stringify({ })
 	};
 
-	// add actual code below
 	var jsonOutput;
 	lambda.invoke(params, function (err, data) {
 		console.log(data.Payload);
@@ -211,6 +189,60 @@ function updateChartTest() {
 		eshanSecondTest(jsonOutput);
 	});
 };
+
+function shameShame() {
+	var lambda = new AWS.Lambda({ region: 'us-east-1', apiVersion: '2015-03-31' });
+	var params = {
+		FunctionName: 'arn:aws:lambda:us-east-1:834423887668:function:shamePeople',
+		InvocationType: 'RequestResponse'
+	};
+
+	var jsonOutput;
+	lambda.invoke(params, function (err, data) {
+		console.log(data.Payload);
+		if (err) console.log("err,err.stack");
+		else console.log("success!");
+		jsonOutput = data.Payload;
+		jsonOutput = data.Payload.replace(/\\/g, "");
+		jsonOutput = JSON.parse(jsonOutput);
+		console.log(jsonOutput);
+		console.log(jsonOutput["business"]);
+		shamePeople(jsonOutput["people"]);
+		shameBusiness(jsonOutput["business"]);
+		document.getElementById("shameText").style.display = "none";
+		document.getElementById("shameData").style.display = "block";
+	});
+};
+
+function shamePeople(ppl){
+	for (var i = 0; i < 10; i++){
+		if (i >= ppl.length)
+		var x = document.getElementById("spreader" + i);
+		if (i < ppl.length){
+			document.getElementById("spreader" + i).style.display = "block";
+			document.getElementById("spreader" + i).innerHTML = (i+1) + ". " + ppl[i][0].substring(0,25) + " - " + ppl[i][1] + " Places(s)";
+		}
+		else {
+			document.getElementById("spreader" + i).style.display = "none";
+			document.getElementById("spreader" + i).innerHTML = "";
+		}
+	}
+}
+
+function shameBusiness(bus){
+	for (var i = 0; i < 10; i++){
+		if (i >= bus.length)
+		var x = document.getElementById("business" + i);
+		if (i < bus.length){
+			document.getElementById("business" + i).style.display = "block";
+			document.getElementById("business" + i).innerHTML = (i+1) + ". " + bus[i][0].split(",")[0] + " - " + bus[i][1] + " Case(s)";
+		}
+		else {
+			document.getElementById("business" + i).style.display = "none";
+			document.getElementById("business" + i).innerHTML = "";
+		}
+	}
+}
 
 
 function finishSubmission() {
@@ -323,15 +355,8 @@ function eshanSecondTest(jsonOutput) {
 		height: '100%',
 		width: '100%',
 	  });
-	// if (jsonOutput.series.length > 0) {
 		x.style.display = "block";
 		y.style.display = "none";
-	// }
-	// else {
-	// 	x.style.display = "none";
-	// 	y.style.display = "block";
-	// }
-
 }
 
 function addSearchField(){
