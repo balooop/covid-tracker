@@ -186,7 +186,7 @@ function updateChartTest() {
 		jsonOutput = data.Payload.replace(/\\/g, "");
 		jsonOutput = JSON.parse(jsonOutput);
 		console.log(jsonOutput);
-		eshanSecondTest(jsonOutput);
+		configureGraph(jsonOutput);
 	});
 };
 
@@ -216,30 +216,44 @@ function shameShame() {
 
 function shamePeople(ppl){
 	for (var i = 0; i < 10; i++){
-		if (i >= ppl.length)
 		var x = document.getElementById("spreader" + i);
-		if (i < ppl.length){
-			document.getElementById("spreader" + i).style.display = "block";
-			document.getElementById("spreader" + i).innerHTML = (i+1) + ". " + ppl[i][0].substring(0,25) + " - " + ppl[i][1] + " Places(s)";
+		if (ppl.length == 0 && i == 0){
+			x.style.display = "block";
+			x.innerHTML = "No one has reported having COVID-19! What liars."
+			var x = document.getElementById("spreader" + 1);
+			x.style.display = "block";
+			x.innerHTML = "Check back later for updated data."
+			i++;
+		}
+		else if (i < ppl.length){
+			x.style.display = "block";
+			x.innerHTML = (i+1) + ". " + ppl[i][0].substring(0,25) + " - " + ppl[i][1] + " Places(s)";
 		}
 		else {
-			document.getElementById("spreader" + i).style.display = "none";
-			document.getElementById("spreader" + i).innerHTML = "";
+			x.style.display = "none";
+			x.innerHTML = "";
 		}
 	}
 }
 
 function shameBusiness(bus){
 	for (var i = 0; i < 10; i++){
-		if (i >= bus.length)
 		var x = document.getElementById("business" + i);
-		if (i < bus.length){
-			document.getElementById("business" + i).style.display = "block";
-			document.getElementById("business" + i).innerHTML = (i+1) + ". " + bus[i][0].split(",")[0] + " - " + bus[i][1] + " Case(s)";
+		if (bus.length == 0 && i == 0){
+			x.style.display = "block";
+			x.innerHTML = "No troublesome businesses reported! We've got our eyes on you Kams..."
+			var x = document.getElementById("business" + 1);
+			x.style.display = "block";
+			x.innerHTML = "Check back later for updated data."
+			i++;
+		}
+		else if (i < bus.length){
+			x.style.display = "block";
+			x.innerHTML = (i+1) + ". " + bus[i][0].split(",")[0] + " - " + bus[i][1] + " Case(s)";
 		}
 		else {
-			document.getElementById("business" + i).style.display = "none";
-			document.getElementById("business" + i).innerHTML = "";
+			x.style.display = "none";
+			x.innerHTML = "";
 		}
 	}
 }
@@ -330,7 +344,7 @@ function searchAgain() {
 	$('html, body').animate({ scrollTop: 0 }, 'fast');
 }
 
-function eshanSecondTest(jsonOutput) {
+function configureGraph(jsonOutput) {
 	console.log(jsonOutput.series);
 
 	var x = document.getElementById("myChart");
