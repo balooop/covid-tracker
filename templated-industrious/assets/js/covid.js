@@ -376,7 +376,8 @@ function configureGraph(jsonOutput) {
     let chartConfig = {
       type: 'treemap',
       options: {
-        aspectType: 'palette',
+		aspectType: 'palette',
+		palette: jsonOutput.options.palette,
         maxChildren: [100, 100, 100],
         tooltipBox: {
           text: '%text'
