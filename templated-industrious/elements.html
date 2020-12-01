@@ -141,6 +141,7 @@
 			function initialize() {
 				updateChartTest();
 				window.autofillSearch = false;
+				window.numerAdd = false;
 				for (var i = 11; i < 12; i++) {
 					var input = document.getElementById('searchTextField' + i);
 					var autocomplete = new google.maps.places.Autocomplete(input);
@@ -151,7 +152,8 @@
 						console.log(this);
 						document.getElementById('searchTextField' + 11).value = place;
 						window.autofillSearch = true;
-						if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.autofillSearch = false;
+						if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.numerAdd = false;
+						else window.numerAdd = true;
 					});
 				}
 			}

@@ -61,7 +61,11 @@ function processForm() {
 	for (var i = 0; i <= window.addrNum; i++){
 		if (window.isPositive == false) break;
 		if (window.autofill[i] == false){
-			alert("Please make sure to select your address from the dropdown! (Also make sure it contains a numerical address)" + " - (Location " + (i + 1) + ")");
+			alert("Please make sure to select your address from the dropdown!" + " (Location " + (i + 1) + ")");
+			return;
+		}
+		if (window.numericalAddr[i] == false){
+			alert("Please make sure the address contains a street number!" + " (Location " + (i + 1) + ")");
 			return;
 		}
 	}
@@ -75,7 +79,11 @@ function processForm() {
 	}
 	if (window.reportBus == 0){
 		if (window.autofill[10] == false){
-			alert("Please make sure to select your address from the dropdown! (Also make sure it contains a numerical address)");
+			alert("Please make sure to select your address from the dropdown!");
+			return;
+		}
+		if (window.numericalAddr[10] == false){
+			alert("Please make sure the address contains a street number!" + " (Location " + (i + 1) + ")");
 			return;
 		}
 		if (document.getElementById("businessReport").value == ""){
@@ -123,6 +131,10 @@ function searchCasesByAddr() {
 	}
 	if (window.autofillSearch == false){
 		alert("Please make sure to select your address from the dropdown! (Also make sure it contains a numerical address)");
+		return;
+	}
+	if (window.numerAdd == false){
+		alert("Please make sure the address contains a street number!");
 		return;
 	}
 	var lambda = new AWS.Lambda({ region: 'us-east-1', apiVersion: '2015-03-31' });

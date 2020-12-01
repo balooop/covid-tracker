@@ -61,8 +61,10 @@
 						function initialize() {
 							window.addrNum = 0;
 							window.autofill = new Array;
+							window.numericalAddr = new Array;
 							for (var i = 0; i < 12; i++){
 								window.autofill.push(false);
+								window.numericalAddr.push(false);
 							}
 							for (var i = 0; i < 11; i++) {
 								var input = document.getElementById('searchTextField' + i);
@@ -75,7 +77,8 @@
 										console.log(this);
 										document.getElementById('searchTextField' + 0).value = place;
 										window.autofill[0] = true;
-										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.autofill[0] = false;
+										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.numericalAddr[0] = false;
+										else window.numericalAddr[0] = true;
 									});
 								}
 								if (i == 1) {
@@ -85,7 +88,8 @@
 										console.log(this);
 										document.getElementById('searchTextField' + 1).value = place;
 										window.autofill[1] = true;
-										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.autofill[1] = false;
+										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.numericalAddr[1] = false;
+										else window.numericalAddr[1] = true;
 									});
 								}
 								if (i == 2) {
@@ -95,7 +99,8 @@
 										console.log(this);
 										document.getElementById('searchTextField' + 2).value = place;
 										window.autofill[2] = true;
-										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.autofill[2] = false;
+										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.numericalAddr[2] = false;
+										else window.numericalAddr[2] = true;
 									});
 								}
 								if (i == 3) {
@@ -105,7 +110,8 @@
 										console.log(this);
 										document.getElementById('searchTextField' + 3).value = place;
 										window.autofill[3] = true;
-										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.autofill[3] = false;
+										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.numericalAddr[3] = false;
+										else window.numericalAddr[3] = true;
 									});
 								}
 								if (i == 4) {
@@ -115,7 +121,8 @@
 										console.log(this);
 										document.getElementById('searchTextField' + 4).value = place;
 										window.autofill[4] = true;
-										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.autofill[4] = false;
+										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.numericalAddr[4] = false;
+										else window.numericalAddr[4] = true;
 									});
 								}
 								if (i == 5) {
@@ -125,7 +132,8 @@
 										console.log(this);
 										document.getElementById('searchTextField' + 5).value = place;
 										window.autofill[5] = true;
-										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.autofill[5] = false;
+										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.numericalAddr[5] = false;
+										else window.numericalAddr[5] = true;
 									});
 								}
 								if (i == 6) {
@@ -135,7 +143,8 @@
 										console.log(this);
 										document.getElementById('searchTextField' + 6).value = place;
 										window.autofill[6] = true;
-										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.autofill[6] = false;
+										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.numericalAddr[6] = false;
+										else window.numericalAddr[6] = true;
 									});
 								}
 								if (i == 7) {
@@ -145,7 +154,8 @@
 										console.log(this);
 										document.getElementById('searchTextField' + 7).value = place;
 										window.autofill[7] = true;
-										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.autofill[7] = false;
+										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.numericalAddr[7] = false;
+										else window.numericalAddr[7] = true;
 									});
 								}
 								if (i == 8) {
@@ -155,7 +165,8 @@
 										console.log(this);
 										document.getElementById('searchTextField' + 8).value = place;
 										window.autofill[8] = true;
-										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.autofill[8] = false;
+										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.numericalAddr[8] = false;
+										else window.numericalAddr[8] = true;
 									});
 								}
 								if (i == 9) {
@@ -165,7 +176,8 @@
 										console.log(this);
 										document.getElementById('searchTextField' + 9).value = place;
 										window.autofill[9] = true;
-										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.autofill[9] = false;
+										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.numericalAddr[9] = false;
+										else window.numericalAddr[9] = true;
 									});
 								}
 								if (i == 10) {
@@ -175,7 +187,8 @@
 										console.log(this);
 										document.getElementById('searchTextField' + 10).value = place;
 										window.autofill[10] = true;
-										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.autofill[10] = false;
+										if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.numericalAddr[10] = false;
+										else window.numericalAddr[10] = true;
 									});
 								}
 
