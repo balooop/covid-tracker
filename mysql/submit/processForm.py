@@ -41,8 +41,8 @@ def addCase(addresses_visited, netid):
         firstHalf = addresses_visited.split(' ')[0]
         firstHalf = re.sub("[^0-9]", "", firstHalf)
         street_address = addresses_visited.split(',')[0].split(' ')
-        block_id = str((int(firstHalf)//100)*100) + ''.join(filter(lambda x: x.isalpha(), street_address[1:]))
-        processed_address = [street_address[0] + ' ' + ' '.join(filter(lambda x: x.isalpha(), street_address[1:]))] + addresses_visited.split(',')[1:]
+        block_id = str((int(firstHalf)//100)*100) + ''.join(filter(lambda x: ('#' not in x and 'suite' not in x.lower() and 'ste' not in x.lower()), street_address[1:]))
+        processed_address = [street_address[0] + ' ' + ' '.join(filter(lambda x: ('#' not in x and 'suite' not in x.lower() and 'ste' not in x.lower()), street_address[1:]))] + addresses_visited.split(',')[1:]
         processed_address = ','.join(processed_address)
 
 
@@ -55,7 +55,6 @@ def addCase(addresses_visited, netid):
             logger.error("ERROR: Duplicate Value")
             logger.error(e)
             conn.commit()
-        
     cur.close()
     return
     

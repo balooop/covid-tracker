@@ -24,8 +24,8 @@ def handler(event, context):
     firstHalf = addr.split(' ')[0]
     firstHalf = re.sub("[^0-9]", "", firstHalf)
     street_address = addr.split(',')[0].split(' ')
-    block_id = str((int(firstHalf)//100)*100) + ''.join(filter(lambda x: x.isalpha(), street_address[1:]))
-    processed_address = [street_address[0] + ' ' + ' '.join(filter(lambda x: x.isalpha(), street_address[1:]))] + addr.split(',')[1:]
+    block_id = str((int(firstHalf)//100)*100) + ''.join(filter(lambda x: ('#' not in x and 'suite' not in x.lower() and 'ste' not in x.lower()), street_address[1:]))
+    processed_address = [street_address[0] + ' ' + ' '.join(filter(lambda x: ('#' not in x and 'suite' not in x.lower() and 'ste' not in x.lower()), street_address[1:]))] + addr.split(',')[1:]
     processed_address = ','.join(processed_address)
     print('SELECT num_cases FROM Addresses WHERE _address = "' + str(processed_address) + '"')
     with conn.cursor() as cur:
@@ -37,12 +37,12 @@ def handler(event, context):
     # adds number of cases at addr to response
     if result is not None:
         resp['numCases'] = result[0]
+    resp['Address'] = processed_address
 
     ########## MongoDB ##########
     # gets violations document for address in mongoDB
     cur = col.find({'Address': processed_address})
     if(cur.count() > 0):
-        resp['Address'] = processed_address
         for x in cur:
             resp['maskViolations'] += x['mask']
             resp['sdViolations'] += x['socialDistancing']

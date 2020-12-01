@@ -30,7 +30,7 @@ def handler(event, context):
         blockId = row[1]
         addrVisited = row[2]
         street_address = addrVisited.split(',')[0].split(' ')
-        processed_address = [street_address[0] + ' ' + ' '.join(filter(lambda x: x.isalpha(), street_address[1:]))] + addrVisited.split(',')[1:]
+        processed_address = [street_address[0] + ' ' + ' '.join(filter(lambda x: ('#' not in x and 'suite' not in x.lower() and 'ste' not in x.lower()), street_address[1:]))] + addrVisited.split(',')[1:]
         processed_address = ','.join(processed_address)
         visited.append(processed_address)
         if blockId not in dict:
@@ -43,8 +43,8 @@ def handler(event, context):
         firstHalf = document["Address"].split(' ')[0]
         firstHalf = re.sub("[^0-9]", "", firstHalf)
         street_address = document["Address"].split(',')[0].split(' ')
-        block_id = str((int(firstHalf)//100)*100) + ''.join(filter(lambda x: x.isalpha(), street_address[1:]))
-        processed_address = [street_address[0] + ' ' + ' '.join(filter(lambda x: x.isalpha(), street_address[1:]))] + document["Address"].split(',')[1:]
+        block_id = str((int(firstHalf)//100)*100) + ''.join(filter(lambda x: ('#' not in x and 'suite' not in x.lower() and 'ste' not in x.lower()), street_address[1:]))
+        processed_address = [street_address[0] + ' ' + ' '.join(filter(lambda x: ('#' not in x and 'suite' not in x.lower() and 'ste' not in x.lower()), street_address[1:]))] + document["Address"].split(',')[1:]
         processed_address = ','.join(processed_address)
         if processed_address not in visited:
             if block_id not in dict:
