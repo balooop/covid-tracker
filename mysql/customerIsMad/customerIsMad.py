@@ -62,7 +62,7 @@ def handler(event, context):
     type['type'] = 'treemap'
     options['split-type'] = 'balanced'
     options['color-type'] = 'palette'
-    options['palette'] = ["#1ab7ea", "#ff5700", "#cd201f", "#25D366", "#3aaf85", "#f1c40f", "#17968e", "#f7b362", "#F58F84", "#5B3256", "#317589", "#6B9362"]
+    options['palette'] = ["#EF767A", "#7C99B4", "#8EB8E5", "#49DCB1", "#49DCB1", "#C2BBF0", "#3590F3", "#034732", "#F58F84", "#5B3256", "#317589", "#6B9362", "#8D6B94", "#565676", "#C38D94", "#565676"]
 
     plotarea['margin'] = "0 0 35 0"
     
