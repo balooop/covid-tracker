@@ -57,7 +57,7 @@
 								</div>
 								<div class="col-75">
 									<input id="searchTextField11" type="text" size="50" placeholder="Enter a location"
-										autocomplete="on" runat="server" onchange="window.autofill[10] = false"/>
+										autocomplete="on" runat="server" onchange="window.autofillSearch = false"/>
 								</div>
 							</div>
 							<a class="button" style="margin: auto;" onclick="searchCasesByAddr();">Search</a>
@@ -154,6 +154,8 @@
 						window.autofillSearch = true;
 						if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.numerAdd = false;
 						else window.numerAdd = true;
+						console.log(window.autofillSearch);
+						console.log(window.numerAdd);
 					});
 				}
 			}

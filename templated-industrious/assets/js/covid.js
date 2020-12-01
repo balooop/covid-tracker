@@ -130,7 +130,7 @@ function searchCasesByAddr() {
 		return;
 	}
 	if (window.autofillSearch == false){
-		alert("Please make sure to select your address from the dropdown! (Also make sure it contains a numerical address)");
+		alert("Please make sure to select your address from the dropdown!");
 		return;
 	}
 	if (window.numerAdd == false){
