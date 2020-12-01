@@ -17,8 +17,8 @@ def handler(event, context):
   
   maskWords = ['not wearing', 'not covering', 'no mask', 'under chin', 'under his chin', 'under her chin', 'under their chin', 'without mask', 'took off mask', 'without a mask', 'without his mask', 'without her mask', 'took off his mask', 'took off her mask', 'took off their mask', 'under nose']
   socialDistancing = ['too many people', 'social distancing', 'close', 'group', 'groups', 'crowd',  'crowds', 'crowded', 'no space', '6 feet', 'close', 'touching', 'shaking hands', 'sharing food']
-  sick = ['cough', 'coughing', 'sick', 'ill', 'sneeze', 'sneezing', 'drinking the liquids on the floor of kams', 'sneezed', 'puke', 'debilitated', 'infected', 'green', 'ailing', 'frail', 'fever', 'feverish']
-  dirty = ['dirty', 'nasty', 'gross', 'not clean', 'nav', 'unsanitary', 'unclean', 'not sanitary', 'grubby', 'filthy', 'unwashed', 'not washed', 'stains', 'stain', 'smeared']
+  sick = ['cough', 'coughing', 'sick', 'ill', 'sneeze', 'sneezing', 'sneezed', 'puke', 'debilitated', 'infected', 'green', 'ailing', 'frail', 'fever', 'feverish']
+  dirty = ['dirty', 'nasty', 'gross', 'not clean', 'unsanitary', 'unclean', 'not sanitary', 'grubby', 'filthy', 'unwashed', 'not washed', 'stains', 'stain', 'smeared']
   
   cmpl = event['Complaints']
   addr = event['Address']
