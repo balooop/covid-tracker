@@ -1,127 +1,91 @@
 {\rtf1\ansi\ansicpg1252\cocoartf2576
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 HelveticaNeue-Bold;}
-{\colortbl;\red255\green255\blue255;\red33\green255\blue6;\red0\green0\blue255;\red205\green165\blue255;
-}
-{\*\expandedcolortbl;;\cssrgb\c0\c97680\c0;\cssrgb\c1680\c19835\c100000;\cssrgb\c84274\c72166\c100000;
-}
-\margl1440\margr1440\vieww28600\viewh16380\viewkind0
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue-Bold;\f1\fnil\fcharset0 HelveticaNeue;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww21620\viewh4940\viewkind0
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 
-\f0\fs26 \cf0 grading:\
-	basic:\
-\cf2 	
-\f1\b \cf3 1. real data
-\f0\b0  X\
+\f0\b\fs36 \cf0 Demo
+\fs26 \
 
-\f1\b 	2. SQL
-\f0\b0 : Create (create a new case, add new address or block) X\
-	
-\f1\b 3. SQL
-\f0\b0 : Read (from search) X\
-	
-\f1\b 4. SQL:
-\f0\b0  Update (add case, update blocks/addresses) X\
-	
-\f1\b 5. SQL:
-\f0\b0  Delete (remove cases w/ netid) X\
-	\cf0 \
+\fs28 \
+Overview\
+
+\f1\b0\fs24 Our app collects and displays crowdsourced Covid data. \
+There are two primary functions of our application: \
+	1) Tracking \'93COVID Hotspots\'94 by allowing users who have tested positive to enter locations they have been\
+	2) Tracking businesses who may be violating COVID safety guidelines by allowing users to report businesses for violating guidelines 
+\f0\b\fs28 \
 \
-	6. SQL: "Interesting Queries" (search w/ join - use "interesting queries" from cp4, put on a new page w/ buttons to execute)\
-	\
-\
+Basic Functions
+\f1\b0\fs26 \
+
+\f0\b\fs24 	1. Show real data (25 records):
+\f1\b0 \
+		- go to \'93Hotspots\'94 page\
+		- search for 2 known addresses - 512 E Green St., 202 E Green St.\
+		- show Hotspots bubble chart:\
+			shows # of cases and business reports at each \'93Block\'94 \
+			shows # of cases at each address in the block\
 	
-\f1\b \cf3 7a. AF1 - usefulness:  DONE
-\f0\b0 \
-		shows people covid hotspots by number of cases \
-	
-\f1\b 7b. AF1 - stored procedures/triggers/functions
-\f0\b0 : 
-\f1\b DONE
-\f0\b0 \
-		triggers on create and delete to group cases into blocks ("prepare" data) \
-	
-\f1\b 7c. AF1 - technically challenging: DONE\
+\f0\b 2. CRUD SQL\
+		Create: 
+\f1\b0 \
+			- click Yes on recently tested positive\
+			- enter a couple addresses (310 E Springfield Ave, 50 E Daniel St, 212 E Green St.)\
+			- uses Google Places API to get \'93proper\'94 addresses and ensure consistency of data\
+			- explain how it works on a trigger to update Cases table and cascades to Addresses and Blocks to keep track of cases at an address and its block\
+				- compute BlockID (mysql/submit/processForm.py)\
+				- show trigger (mysql/intert_cases_trigger.sql)\
+			- error if \'93invalid\'94 address\
 		
-\f0\b0 using triggers for SQL DB to update multiple tables, working with maps API to parse addresses + create "block_id", integrating SQL queries in bubble chart was hard \
+\f0\b Read
+\f1\b0 :\
+			- search for Address in search box (e.x. 310 E Springfield Ave)\
+			- show that it displays # cases at the location (SQL portion)\
+		
+\f0\b Update: 
+\f1\b0 \
+			- add a new case at an address (310 E Springfield Ave)\
+			- trigger determines if there needs to be a new address entry added or we simply update count of cases\
+			- search for 310 E Springfield Ave in search box and show an updated # cases\
+		
+\f0\b Delete
+\f1\b0 :\
+			- not tested positive \'97> cleared from isolation\
+			- deletes based on a trigger (mysql/delete_cases_trigger.sql) \'97> finds all cases associated with that address and removes case from address and block\
 
-\f1\b 	7d. AF1 - creative or novel:
-\f0\b0  
-\f1\b DONE
-\f0\b0 \
-		groups cases into block, creates a way to see which "areas" of campus have the most cases, haven't seen that at UIUC  \
-	
-\f1\b 8a. AF2 - NoSQL: Create
-\f0\b0  
-\f1\b DONE
-\f0\b0 \
-		Add address to "Complaints" collection on first complaint\
+\f0\b 	3. Interesting Queries\
+		
+\f1\b0 - go to leaderboard page\
+		query 1: \'93super spreaders\'94 people who have been to the most locations and tested positive\
+		query 2: bad businesses - businesses with the most cases at those businesses\
 
-\f1\b \cf0 \
-\
-\cf4 	8b. AF2 - NoSQL: Read
-\f0\b0 \cf4 \
-		current - map showing # violations, going to replace w/ search page for violations\cf0 \
+\f0\b 	4. Advanced Function 1:
+\f1\b0  Bubble chart of cases\
+		1. Useful: Shows peoples blocks to avoid by showing them areas with lots of cases\
+		2. DB stored procedures, functions, triggers:\
+			Trigger used for insert/update and delete as explained earlier to calculate # cases at a block and address\
+		3. Technical complexity:\
+			Complexity of parsing data correctly to display in chart - needed to parse data into a dictionary \'97> key = block, value = (address, cases) pair \'97> passed to create a chart\
+		4. Creative or novel: haven\'92t seen anything that shows hotspots by block on campus	
+\f0\b 5. Advanced Function 2:
+\f1\b0  NoSQL to hold violations\
+		1. Implementation Overview:\
+			- addresses to report: Noodles & Company, Bearology, County Market \
+			- choose address, report violation, type \'93workers not wearing masks, seemed very unsanitary and crowded\'94 \'97> search for address, see updated # violations + text showing their complaint\
+			- how it works: user enters the address and violation, we parse it to find keywords related to violation categories (social distancing, etc.), tally # violations and store complaints in an array\
+		2. Why NoSQL: \
+			- wanted to have free text list of complaints that could be added to, MongoDB allows for holding data in arrays \
+			- SQL was fine for cases b/c there\'92s no reason to hold data in arrays or freeform, but violations required storing user complaints\
+		3. Challenges in connecting SQL and NoSQL\
+			- bubble chart\
+			- had to get data from both SQL and NoSQL to update bubble chart\
+			- issue: not able to show locations with violations but no cases \'97> had to workaround by looking through both SQL and NoSQL and adding entries to dictionary from Mongo\
+		4. Useful: people can check if a restaurant or business they want to visit hasn\'92t been following guidelines\
+		5. Challenging: using MongoDB figuring out how to parse complaints to do sentiment analysis, integrating with MySQL in bubble chart\
+		6. Creative: haven\'92t seen tis before\
 
-\f1\b \
-\
-	\cf3 8c. AF2 - NoSQL: Update DONE
-\f0\b0 \
-		add new violation to an existing address\
+\fs20 \
 
-\f1\b \cf0 	\
-\
-	8d. AF2 - NoSQL: Delete (TBD)
-\f0\b0 \
-\
-\
-\
-	
-\f1\b \cf3 8e. AF2 - Why Mongo?
-\f0\b0  
-\f1\b DONE
-\f0\b0 \
-		To store array of freetext complaints - dynamic sized array\
-	
-\f1\b 8f. AF2- Integration
-\f0\b0 : 
-\f1\b DONE (CAN IMPROVE)
-\f0\b0 \
-		through Bubble chart, shows # violations at address w/ case. challenging to weave both SQL and MongoDB query results into bubble chart\
-\cf0 \
-\
-\
-	
-\f1\b \cf3 8g. AF2 - usefulness:
-\f0\b0  
-\f1\b DONE
-\f0\b0 \
-		people can check if a restaurant/other business they want to visit hasn't been following covid restrictions \
-	
-\f1\b 8h. AF2
-\f0\b0  
-\f1\b - technically challenging:
-\f0\b0  
-\f1\b DONE
-\f0\b0 \
-		using MongoDB, figuring out how to parse freetext complaints (sentiment analysis), how to integrate it with SQL in bubble chart \
-
-\f1\b 	8i. AF2 - creative or novel:
-\f0\b0  
-\f1\b DONE
-\f0\b0 \
-		no one else has this \
-
-\f1\b \cf0 \
-\
-\
-\
-	9. EC: link to app 
-\f0\b0 \
-
-\f1\b 	10. Link to source code 
-\f0\b0 \
-
-\f1\b 	11. Final report
-\f0\b0 \
-
-\f1\b 	12. Demo video}
+\fs24 				}
