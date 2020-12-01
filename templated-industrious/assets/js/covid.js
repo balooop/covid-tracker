@@ -227,7 +227,8 @@ function shameShame() {
 };
 
 function shamePeople(ppl){
-	for (var i = 0; i < 10; i++){
+	ppl = ppl.sort(sortFunction);
+	for (var i = 0; i < 3; i++){
 		var x = document.getElementById("spreader" + i);
 		if (ppl.length == 0 && i == 0){
 			x.style.display = "block";
@@ -249,7 +250,8 @@ function shamePeople(ppl){
 }
 
 function shameBusiness(bus){
-	for (var i = 0; i < 10; i++){
+	bus = bus.sort(sortFunction);
+	for (var i = 0; i < 3; i++){
 		var x = document.getElementById("business" + i);
 		if (bus.length == 0 && i == 0){
 			x.style.display = "block";
@@ -268,6 +270,15 @@ function shameBusiness(bus){
 			x.innerHTML = "";
 		}
 	}
+}
+
+function sortFunction(a, b) {
+    if (a[1] === b[1]) {
+        return 0;
+    }
+    else {
+        return (a[1] < b[1]) ? 1 : -1;
+    }
 }
 
 
