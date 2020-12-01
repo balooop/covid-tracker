@@ -77,25 +77,25 @@
 									<div class="option">
 										<ul>
 											<li id="dirtbox">
-												<i class="fa" aria-hidden="true">Sanitation Violations:</i>
+												<i class="fa" aria-hidden="true" style="color: white; font-size: 30px;">Sanitation Violations:</i>
 												<br>
 												<i class="fa bigtext" id="casescardcountdirt" aria-hidden="true"></i>
 												<br>
 											</li>
 											<li id="maskbox">
-												<i class="fa" aria-hidden="true">Mask Violations:</i>
+												<i class="fa" aria-hidden="true" style="color: white; font-size: 30px;">Mask Violations:</i>
 												<br>
 												<i class="fa bigtext" id="casescardcountmask" aria-hidden="true"></i>
 												<br>
 											</li>
 											<li id="socidistbox">
-												<i class="fa" aria-hidden="true">Social Distancing Violations:</i>
+												<i class="fa" aria-hidden="true" style="color: white; font-size: 30px;">Social Distancing Violations:</i>
 												<br>
 												<i class="fa bigtext" id="casescardcountsocdist" aria-hidden="true"></i>
 												<br>
 											</li>
 											<li id="sickbox">
-												<i class="fa" aria-hidden="true">Reports of Sick Individuals:</i>
+												<i class="fa" aria-hidden="true" style="color: white; font-size: 30px;">Reports of Sick Individuals:</i>
 												<br>
 												<i class="fa bigtext" id="casescardcountsick" aria-hidden="true"></i>
 												<br>
@@ -151,6 +151,7 @@
 						console.log(this);
 						document.getElementById('searchTextField' + 11).value = place;
 						window.autofillSearch = true;
+						if (/^\d+$/.test(this.getPlace().formatted_address.split(" ")[0]) == false) window.autofillSearch = false;
 					});
 				}
 			}

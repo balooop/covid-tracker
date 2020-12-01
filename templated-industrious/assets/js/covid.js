@@ -61,7 +61,7 @@ function processForm() {
 	for (var i = 0; i <= window.addrNum; i++){
 		if (window.isPositive == false) break;
 		if (window.autofill[i] == false){
-			alert("Please make sure to select your address from the dropdown!" + "(Location" + (i + 1) + ")");
+			alert("Please make sure to select your address from the dropdown! (Also make sure it contains a numerical address)" + " - (Location " + (i + 1) + ")");
 			return;
 		}
 	}
@@ -75,7 +75,7 @@ function processForm() {
 	}
 	if (window.reportBus == 0){
 		if (window.autofill[10] == false){
-			alert("Please make sure to select your address from the dropdown!");
+			alert("Please make sure to select your address from the dropdown! (Also make sure it contains a numerical address)");
 			return;
 		}
 		if (document.getElementById("businessReport").value == ""){
@@ -122,7 +122,7 @@ function searchCasesByAddr() {
 		return;
 	}
 	if (window.autofillSearch == false){
-		alert("Please make sure to select your address from the dropdown!");
+		alert("Please make sure to select your address from the dropdown! (Also make sure it contains a numerical address)");
 		return;
 	}
 	var lambda = new AWS.Lambda({ region: 'us-east-1', apiVersion: '2015-03-31' });
