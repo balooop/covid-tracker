@@ -5,10 +5,11 @@ from datetime import datetime
 import uuid
 import re
 #rds settings
-rds_host  = 'covid-tracker.c7ic0rieoltc.us-east-1.rds.amazonaws.com'
-username = 'admin'
-password = 'Cov1dgrap3'
-db_name = 'covid-locations-tracker'
+#hidden credentials
+rds_host  = '' 
+username = ''
+password = ''
+db_name = ''
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
