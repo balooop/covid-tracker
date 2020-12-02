@@ -1,9 +1,9 @@
 // Configure AWS SDK for JavaScript & set region and credentials
 // Initialize the Amazon Cognito credentials provider
-// CHANGE
-AWS.config.region = 'us-east-1'; // Region
+// Hidden credentials
+AWS.config.region = ''; // Region
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-	IdentityPoolId: 'us-east-1:5e1316c9-1ebf-425d-80a9-9a0dc3dbba29',
+	IdentityPoolId: '',
 });
 AWS.config.apiVersions = {
 	lambda: '2015-03-31',
@@ -104,8 +104,8 @@ function processForm() {
 		"address8": document.getElementById("searchTextField8").value,"address9": document.getElementById("searchTextField9").value,
 		"NetID": document.getElementById("netid").value.toLowerCase().trim(), "Delete": window.delOrNot }));
 		var params = {
-			// 
-			FunctionName: 'arn:aws:lambda:us-east-1:834423887668:function:submit',
+			// hidden function
+			FunctionName: '',
 			InvocationType: 'RequestResponse',
 			Payload: JSON.stringify({ "address0": document.getElementById("searchTextField0").value, "address1": document.getElementById("searchTextField1").value,
 			"address2": document.getElementById("searchTextField2").value,"address3": document.getElementById("searchTextField3").value,
@@ -139,7 +139,8 @@ function searchCasesByAddr() {
 	}
 	var lambda = new AWS.Lambda({ region: 'us-east-1', apiVersion: '2015-03-31' });
 	var params = {
-		FunctionName: 'arn:aws:lambda:us-east-1:834423887668:function:searchCases',
+		// hidden function
+		FunctionName: '',
 		InvocationType: 'RequestResponse',
 		Payload: JSON.stringify({ "address": document.getElementById("searchTextField11").value })
 	};
@@ -169,7 +170,8 @@ function customerComplaints() {
 	}
 	var lambda = new AWS.Lambda({ region: 'us-east-1', apiVersion: '2015-03-31' });
 	var params = {
-		FunctionName: 'arn:aws:lambda:us-east-1:834423887668:function:customerComplaints',
+		// hidden function
+		FunctionName: '',
 		InvocationType: 'RequestResponse',
 		Payload: JSON.stringify({ "Complaints": document.getElementById("businessReport").value, "Address": document.getElementById("searchTextField10").value })
 	};
@@ -185,7 +187,8 @@ function customerComplaints() {
 function updateChartTest() {
 	var lambda = new AWS.Lambda({ region: 'us-east-1', apiVersion: '2015-03-31' });
 	var params = {
-		FunctionName: 'arn:aws:lambda:us-east-1:834423887668:function:customerIsMad',
+		// hidden function
+		FunctionName: '',
 		InvocationType: 'RequestResponse'
 	};
 
@@ -205,7 +208,8 @@ function updateChartTest() {
 function shameShame() {
 	var lambda = new AWS.Lambda({ region: 'us-east-1', apiVersion: '2015-03-31' });
 	var params = {
-		FunctionName: 'arn:aws:lambda:us-east-1:834423887668:function:shamePeople',
+		// hidden function
+		FunctionName: '',
 		InvocationType: 'RequestResponse'
 	};
 
