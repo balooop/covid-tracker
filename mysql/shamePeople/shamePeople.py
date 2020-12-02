@@ -4,11 +4,12 @@ import pymysql
 import json
 import re
 
+#hidden credentials
 #rds settings
-rds_host  = 'covid-tracker.c7ic0rieoltc.us-east-1.rds.amazonaws.com'
-username = 'admin'
-password = 'Cov1dgrap3'
-db_name = 'covid-locations-tracker'
+rds_host  = ''
+username = ''
+password = ''
+db_name = ''
 conn = pymysql.connect(rds_host, user=username, passwd=password, db=db_name, connect_timeout=5)
 
 # logger.info("SUCCESS: Connection to RDS MySQL instance succeeded")
