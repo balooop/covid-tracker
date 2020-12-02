@@ -3,17 +3,18 @@ import pymongo
 import json
 import re
 
+#hidden DB credentials
 #rds settings
-rds_host  = 'covid-tracker.c7ic0rieoltc.us-east-1.rds.amazonaws.com'
-username = 'admin'
-password = 'Cov1dgrap3'
-db_name = 'covid-locations-tracker'
+rds_host  = ''
+username = ''
+password = ''
+db_name = ''
 conn = pymysql.connect(rds_host, user=username, passwd=password, db=db_name, connect_timeout=5)
 
 #mongoDB connection
-client = pymongo.MongoClient("mongodb+srv://user:cs411project@cluster0.2xbcj.mongodb.net/?retryWrites=true&w=majority")
-db = client[ "Complaints" ]
-col = db[ "Complaints" ] 
+client = pymongo.MongoClient("")
+db = client[ "" ]
+col = db[ "" ] 
 
 def handler(event, context):
     ########## SQL ##########
