@@ -1,10 +1,10 @@
 import pymongo
 import re
 
-
-client = pymongo.MongoClient("mongodb+srv://user:cs411project@cluster0.2xbcj.mongodb.net/?retryWrites=true&w=majority")
-db = client[ "Complaints" ]
-col = db[ "Complaints" ] 
+# hidden DB information
+client = pymongo.MongoClient("")
+db = client[ "" ]
+col = db[ "" ] 
 
 
     
